@@ -1,4 +1,10 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="welcome_font">30dp</dimen>
+    <dimen name="default_width">300dp</dimen>
+    <dimen name="right_margin">50dp</dimen>
+    <dimen name="top_top_margin">300dp</dimen>
+    <dimen name="top_margin">40dp</dimen>
+    <dimen name="more_top_margin">60dp</dimen>
+
 </resources>

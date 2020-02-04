@@ -11,6 +11,10 @@
     <string name="invalid_qrcode">بارکد داده شده معتبر نیست</string>
     <string name="welcome_to_shah">آمدم ای شاه، پناهم بده</string>
     <string name="paboos98">پابوس ۱۳۹۸</string>
+    <string name="username">نام‌کاربری</string>
+    <string name="sign_in">ورود</string>
+    <string name="password">رمز</string>
+
 
     <string-array name="actions">
         <item>غذا</item>
