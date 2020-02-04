@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <style name="CorrectTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name='back_color'>@color/green_transparent</item>
+        <item name="button_color">@color/green</item>
+        <item name="text_color">@color/black</item>
+    </style>
+
+    <style name="WrongTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name='back_color'>@color/red_transparent</item>
+        <item name="button_color">@color/red</item>
+        <item name="text_color">@color/black</item>
+    </style>
+
+</resources>

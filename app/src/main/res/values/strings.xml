@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">PaboosYar</string>
+
+    <string name="app_name">پابوس‌یار</string>
+    <string name="scan_message">کد مسافر را اسکن کنید.</string>
+    <string name="has_food">غذای مسافر دریافت شد.</string>
+    <string name="has_no_food">غذایی توسط مسافر سفارش داده نشده است.</string>
+    <string name="rescan">دوباره اسکن کن</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invalid_qrcode">بارکد داده شده معتبر نیست</string>
+    <string name="welcome_to_shah">آمدم ای شاه، پناهم بده</string>
+    <string name="paboos98">پابوس ۱۳۹۸</string>
+
+    <string-array name="actions">
+        <item>غذا</item>
+        <item>فرهنگی</item>
+        <item>تفریحی</item>
+        <item>قطار</item>
+        <item>پتو</item>
+        <item>تشخیص هویت</item>
+    </string-array>
 </resources>

@@ -4,6 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WelcomeActivity">
+    tools:context=".WelcomeActivity"
+    android:background="@drawable/splash_background"
+    android:layout_gravity="center">
 
+    <TextView
+        android:id="@+id/amadam_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_to_shah"
+        android:textSize="@dimen/welcome_font"
+        app:layout_constraintBottom_toTopOf="@id/date_text_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/date_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/welcome_font"
+        android:text="@string/paboos98"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:gravity="center"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

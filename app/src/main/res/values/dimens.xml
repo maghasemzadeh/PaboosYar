@@ -1,2 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="welcome_font">30dp</dimen>
+</resources>
