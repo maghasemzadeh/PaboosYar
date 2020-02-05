@@ -8,7 +8,7 @@
     android:background="@color/paboos_blue">
 
     <EditText
-        android:id="@+id/activity_login_username_tv"
+        android:id="@+id/activity_login_username_et"
         android:layout_width="@dimen/default_width"
         android:layout_height="wrap_content"
         android:hint="@string/username"
@@ -28,7 +28,7 @@
         android:inputType="textPassword"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/activity_login_username_tv" />
+        app:layout_constraintTop_toTopOf="@id/activity_login_username_et" />
     
     <Button
         android:id="@+id/activity_login_sign_in_button"
@@ -39,6 +39,7 @@
         app:layout_constraintTop_toTopOf="@id/activity_login_password_tv"
         android:layout_marginRight="@dimen/right_margin"
         android:layout_marginTop="@dimen/more_top_margin"
-        android:background="@color/paboos_dark_blue"/>
+        android:background="@color/paboos_dark_blue"
+        android:onClick="signIn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,8 @@
     <string name="username">نام‌کاربری</string>
     <string name="sign_in">ورود</string>
     <string name="password">رمز</string>
+    <string name="connection_error">خطا در ارتباط با سرور</string>
+    <string name="welcome_khadem">خادم عزیز، خوش آمدید.</string>
 
 
     <string-array name="actions">
