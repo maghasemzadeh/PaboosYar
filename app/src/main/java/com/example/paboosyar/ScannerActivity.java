@@ -16,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -36,14 +37,16 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     SurfaceView mCameraPriview;
     TextView mResultTv;
     Button mEnableBtn;
-    Spinner mSpinner;
-
+    TextView mTitle;
+    TextView mHistory;
 
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
 
     MediaPlayer acceptSound;
     MediaPlayer rejectSound;
+
+    boolean hasHistory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +59,16 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         mCameraPriview = findViewById(R.id.activity_scanner_camera_preview);
         mResultTv = findViewById(R.id.frg_result_main_text_view);
         mEnableBtn = findViewById(R.id.frg_done_button);
-        mSpinner = findViewById(R.id.activity_scanner_actions_spinner);
+        mTitle = findViewById(R.id.activity_scanner_title);
+        mHistory = findViewById(R.id.activity_scanner_history);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.actions, android.R.layout.simple_spinner_item);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        mSpinner.setAdapter(adapter);
+        hasHistory = getIntent().getExtras().getBoolean("has_history");
+        mTitle.setText(getIntent().getExtras().getString("title"));
+        if(hasHistory)
+            mHistory.setVisibility(View.VISIBLE);
+        else
+            mHistory.setVisibility(View.INVISIBLE);
 
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
