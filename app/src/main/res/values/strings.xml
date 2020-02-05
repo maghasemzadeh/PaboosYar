@@ -26,6 +26,10 @@
     <string name="futsal">فوتسال</string>
     <string name="bowling">بولینگ</string>
     <string name="paintball">پینت‌بال</string>
+    <string name="martyr_view">دیدار با خانواده شهدا</string>
+    <string name="rest_home_view_janbaz">بازدید آسایشگاه جانبازان امام خمنینی</string>
+    <string name="rest_home_malool_view">بازدید از آسایشگاه معلولین فیاض‌بخش</string>
+    <string name="sample">نمونه</string>
 
 
     <string-array name="actions">

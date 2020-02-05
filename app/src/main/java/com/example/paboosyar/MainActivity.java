@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public void showBlanket(View view) {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.blanket));
-        intent.putExtra("has_history", false);
+        intent.putExtra("has_history", true);
         startActivity(intent);
     }
 
@@ -64,4 +64,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void showFood(View view) {
+        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+        intent.putExtra("title", getString(R.string.food));
+        intent.putExtra("has_history", true);
+        startActivity(intent);
+    }
+
+    public void showCultural(View view) {
+        Intent intent = new Intent(MainActivity.this, CulturalActivity.class);
+        intent.putExtra("title", getString(R.string.cultural));
+        intent.putExtra("has_history", true);
+        startActivity(intent);
+    }
 }

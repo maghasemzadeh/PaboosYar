@@ -17,7 +17,8 @@
         android:text="@string/food"
         android:textSize="@dimen/default_text_size"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="showFood"/>
 
 
     <Button
@@ -30,7 +31,8 @@
         android:layout_marginEnd="@dimen/right_margin"
         android:background="@color/paboos_dark_blue"
         android:text="@string/cultural"
-        android:textSize="@dimen/default_text_size"/>
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showCultural"/>
 
     <Button
         android:id="@+id/activity_main_recreational_button"

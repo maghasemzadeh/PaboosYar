@@ -9,20 +9,20 @@
         android:layout_height="match_parent"
         android:id="@+id/activity_scanner_camera_preview"
         android:layout_gravity="center" />
-    <SurfaceView
+    <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:background="@drawable/camera_viewer"/>
     <TextView
         android:id="@+id/activity_scanner_title"
-        android:layout_marginTop="@dimen/top_margin"
-        android:layout_width="@dimen/default_width"
-        android:layout_height="wrap_content"
+        android:layout_width="500dp"
+        android:layout_height="60dp"
         android:textSize="@dimen/default_text_size"
         android:layout_gravity="top|center"
         android:textAlignment="center"
-        android:background="@drawable/caadr"/>
+        android:text="@string/sample"
+        android:background="@drawable/title"/>
     <View
         android:layout_gravity="center"
         android:layout_width="200dp"
@@ -32,9 +32,9 @@
         android:id="@+id/activity_scanner_history"
         android:layout_marginBottom="@dimen/top_margin"
         android:layout_width="@dimen/default_width"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:textSize="@dimen/default_text_size"
-        android:text="masdifnasdf"
+        android:text="آمار ثبت شده: ۰ \nآمار درخواستی: ۰"
         android:layout_gravity="bottom|center"
         android:textAlignment="center"
         android:background="@drawable/caadr"
