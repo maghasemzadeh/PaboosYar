@@ -4,6 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecreationalActivity">
+    tools:context=".RecreationalActivity"
+    android:background="@color/paboos_blue">
+
+    <Button
+        android:id="@+id/activity_main_pool_button"
+        android:layout_width="@dimen/default_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_activity_top_margin"
+        android:layout_marginEnd="@dimen/right_margin"
+        android:background="@color/paboos_dark_blue"
+        android:text="@string/blue_waves_pool"
+        android:textSize="@dimen/default_text_size"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="showPool"/>
+
+
+    <Button
+        android:id="@+id/activity_main_paintball_button"
+        android:layout_width="@dimen/default_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_pool_button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_marginEnd="@dimen/right_margin"
+        android:background="@color/paboos_dark_blue"
+        android:text="@string/paintball"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showPaintball"/>
+
+    <Button
+        android:id="@+id/activity_main_bowling_button"
+        android:layout_width="@dimen/default_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_paintball_button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_marginEnd="@dimen/right_margin"
+        android:background="@color/paboos_dark_blue"
+        android:text="@string/bowling"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showBowling"/>
+
+
+    <Button
+        android:id="@+id/activity_main_futsal_button"
+        android:layout_width="@dimen/default_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_bowling_button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_marginEnd="@dimen/right_margin"
+        android:background="@color/paboos_dark_blue"
+        android:text="@string/futsal"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showFutsal" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

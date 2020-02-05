@@ -22,6 +22,10 @@
     <string name="train">قطار</string>
     <string name="blanket">پتو</string>
     <string name="entity">تشخیص هویت</string>
+    <string name="blue_waves_pool">استخر موج‌های آبی</string>
+    <string name="futsal">فوتسال</string>
+    <string name="bowling">بولینگ</string>
+    <string name="paintball">پینت‌بال</string>
 
 
     <string-array name="actions">

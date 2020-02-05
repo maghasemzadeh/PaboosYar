@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_paboos_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecreationalActivity"></activity>
+        <activity android:name=".CulturalActivity"></activity>
+        <activity android:name=".RecreationalActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".WelcomeActivity" />
         <activity android:name=".ScannerActivity" />
     </application>
 

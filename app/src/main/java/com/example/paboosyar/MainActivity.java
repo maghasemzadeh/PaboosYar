@@ -60,5 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showRecreational(View view) {
+        Intent intent = new Intent(MainActivity.this, RecreationalActivity.class);
+        startActivity(intent);
     }
+
 }
