@@ -7,10 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.vision.CameraSource;
-
-import java.util.Scanner;
-
 public class MainActivity extends AppCompatActivity {
 
     Button mFoodBtn;
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showFood(View view) {
-        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+        Intent intent = new Intent(MainActivity.this, FoodActivity.class);
         intent.putExtra("title", getString(R.string.food));
         intent.putExtra("has_history", true);
         startActivity(intent);

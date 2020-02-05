@@ -33,6 +33,8 @@ public class ResultFragment extends Fragment {
     boolean accepted;
     TextView tv;
 
+    String message = "";
+
     public void setType(boolean b) {
         accepted = b;
     }
@@ -85,21 +87,15 @@ public class ResultFragment extends Fragment {
             getContext().setTheme(R.style.WrongTheme);
         View rootView = inflater.inflate(R.layout.fragment_result, container, false);
         tv = rootView.findViewById(R.id.frg_result_main_text_view);
-        if (accepted)
-            tv.setText(R.string.has_food);
-        else
-            tv.setText(R.string.has_no_food);
+        tv.setText(mListener.getMessage());
         enableBtn = rootView.findViewById(R.id.frg_done_button);
-        enableBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentManager.popBackStackImmediate();
-                fragmentTransaction.commit();
-                if(mListener != null){
-                    mListener.onFragmentInteraction();
-                }
+        enableBtn.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentManager.popBackStackImmediate();
+            fragmentTransaction.commit();
+            if(mListener != null){
+                mListener.onFragmentInteraction();
             }
         });
         return rootView;
@@ -123,7 +119,7 @@ public class ResultFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
+        String getMessage();
         void onFragmentInteraction();
     }
 

@@ -30,6 +30,9 @@
     <string name="rest_home_view_janbaz">بازدید آسایشگاه جانبازان امام خمنینی</string>
     <string name="rest_home_malool_view">بازدید از آسایشگاه معلولین فیاض‌بخش</string>
     <string name="sample">نمونه</string>
+    <string name="men">بردران</string>
+    <string name="women">خواهران</string>
+    <string name="graduated">فارغ‌التحصیلان</string>
 
 
     <string-array name="actions">

@@ -3,14 +3,17 @@ package com.example.paboosyar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.paboosyar.RetrofitModels.Authentication;
 import com.example.paboosyar.RetrofitModels.User;
-import com.example.paboosyar.RetrofitModels.UserClient;
+import com.example.paboosyar.RetrofitModels.retrofitHandler;
+import com.google.android.gms.auth.api.Auth;
 
 import java.io.IOException;
 
@@ -27,6 +30,10 @@ public class LoginActivity extends AppCompatActivity {
     EditText mUsernameEt;
     EditText mPasswordEt;
 
+
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -35,6 +42,14 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.activity_login_sign_in_button);
         mUsernameEt = findViewById(R.id.activity_login_username_et);
         mPasswordEt = findViewById(R.id.activity_login_password_tv);
+
+        preferences = getApplicationContext().getSharedPreferences("mainPref", 0);
+        editor = preferences.edit();
+        if(preferences.getString(Prefs.TOKEN, "") != "") {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 
@@ -45,59 +60,35 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://account.azzahraa.sharif.ir/api/")
+                .baseUrl("http://account.azzahraa.ir/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
 
-        UserClient userClient = retrofit.create(UserClient.class);
+        retrofitHandler retrofitHandler = retrofit.create(retrofitHandler.class);
 
-        Call<String> call = userClient.getUser((new User(username, password)));
-        call.enqueue(new Callback<String>() {
+        Call<Authentication> call = retrofitHandler.getToken((new User(username, password)));
+        call.enqueue(new Callback<Authentication>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Authentication> call, Response<Authentication> response) {
                 if (response.isSuccessful()) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(LoginActivity.this, response.body(), Toast.LENGTH_SHORT).show();
+                    editor.putString(Prefs.TOKEN, response.body().getToken());
+                    editor.commit();
+                    Toast.makeText(LoginActivity.this, getString(R.string.welcome_khadem), Toast.LENGTH_LONG).show();
                     finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_LONG).show();
+
                 }
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Authentication> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, getString(R.string.connection_error) , Toast.LENGTH_LONG).show();
             }
         });
-        Toast.makeText(LoginActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT).show();
 
-        try {
-            call.execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
-
-//    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-//        protected Long doInBackground(URL... urls) {
-//            int count = urls.length;
-//            long totalSize = 0;
-//            for (int i = 0; i < count; i++) {
-//                totalSize += Downloader.downloadFile(urls[i]);
-//                publishProgress((int) ((i / (float) count) * 100));
-//                // Escape early if cancel() is called
-//                if (isCancelled()) break;
-//            }
-//            return totalSize;
-//        }
-//
-//        protected void onProgressUpdate(Integer... progress) {
-//            setProgressPercent(progress[0]);
-//        }
-//
-//        protected void onPostExecute(Long result) {
-//            showDialog("Downloaded " + result + " bytes");
-//        }
-//    }
-
 }

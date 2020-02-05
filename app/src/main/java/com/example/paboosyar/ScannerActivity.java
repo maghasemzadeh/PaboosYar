@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -23,6 +25,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.paboosyar.RetrofitModels.Response;
+import com.example.paboosyar.RetrofitModels.User;
+import com.example.paboosyar.RetrofitModels.Username;
+import com.example.paboosyar.RetrofitModels.retrofitHandler;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -30,6 +36,11 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ScannerActivity extends AppCompatActivity implements ResultFragment.OnFragmentInteractionListener {
 
@@ -48,6 +59,19 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     boolean hasHistory;
 
+
+    String message = "";
+
+    SharedPreferences preferences;
+
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://account.azzahraa.ir/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+    retrofitHandler retrofitHandler = retrofit.create(retrofitHandler.class);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +86,8 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         mTitle = findViewById(R.id.activity_scanner_title);
         mHistory = findViewById(R.id.activity_scanner_history);
 
+
+        preferences = getApplicationContext().getSharedPreferences("mainPref", 0);
 
         hasHistory = getIntent().getExtras().getBoolean("has_history");
         mTitle.setText(getIntent().getExtras().getString("title"));
@@ -107,32 +133,53 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
 
                 if(qrCodes.size() != 0) {
-                    mCameraPriview.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-
-                                String nationalCode = decryptNationalCode(qrCodes.valueAt(0).displayValue);
-                                boolean hasFood = hasFood(nationalCode);
-                                Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                                FragmentManager fm = getSupportFragmentManager();
-                                ResultFragment fragment = new ResultFragment();
-                                androidx.fragment.app.FragmentTransaction ft = fm.beginTransaction();
-                                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                                ft.addToBackStack(null);
-                                ft.replace(R.id.main_layout,fragment).commit();
-                                fragment.setType(hasFood);
-                                if(hasFood) {
-                                    vibrator.vibrate(200);
-                                    acceptSound.start();
-                                } else {
-                                    vibrator.vibrate(1000);
-                                    rejectSound.start();
-                                }
-                                cameraSource.stop();
-                            } catch (InvalidQRCodeException ignored) {
-                                Toast.makeText(ScannerActivity.this, R.string.invalid_qrcode, Toast.LENGTH_SHORT).show();
+                    mCameraPriview.post(() -> {
+                        try {
+                            String token = preferences.getString(Prefs.TOKEN, "");
+                            if(token == "") {
+                                Intent intent = new Intent(ScannerActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                                return;
                             }
+                            String nationalCode = decryptNationalCode(qrCodes.valueAt(0).displayValue);
+                            Call<Response> responseCall = retrofitHandler.getMenDinner(new Username(nationalCode), "Token " + token);
+                            responseCall.enqueue(new Callback<Response>() {
+                                @Override
+                                public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                                    if(response.isSuccessful()) {
+                                        boolean ok = response.body().isOk();
+                                        Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                                        FragmentManager fm = getSupportFragmentManager();
+                                        ResultFragment fragment = new ResultFragment();
+                                        FragmentTransaction ft = fm.beginTransaction();
+                                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                                        ft.addToBackStack(null);
+                                        message = response.body().getMessage();
+                                        ft.replace(R.id.main_layout,fragment).commit();
+                                        fragment.setType(ok);
+                                        if(ok) {
+                                            acceptSound.start();
+                                            vibrator.vibrate(200);
+                                        } else {
+                                            vibrator.vibrate(1000);
+                                            rejectSound.start();
+                                        }
+                                        cameraSource.stop();
+                                    } else {
+                                        Toast.makeText(ScannerActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Response> call, Throwable t) {
+
+                                    Toast.makeText(ScannerActivity.this, "ridi", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                        } catch (InvalidQRCodeException ignored) {
+                            Toast.makeText(ScannerActivity.this, R.string.invalid_qrcode, Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -192,9 +239,9 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         return result.toString();
     }
 
-    boolean hasFood(String code) {
-        Random r = new Random();
-        return r.nextBoolean();
+    @Override
+    public String getMessage() {
+        return message;
     }
 
     @Override
