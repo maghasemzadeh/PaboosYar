@@ -7,12 +7,12 @@
     <SurfaceView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/activity_result_camera_preview"
+        android:id="@+id/activity_scanner_camera_preview"
         android:layout_gravity="center" />
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/activity_main_actions_spinner"
+        android:id="@+id/activity_scanner_actions_spinner"
         android:layout_gravity="bottom"
         android:textAlignment="center"
         android:background="@color/green_transparent"/>

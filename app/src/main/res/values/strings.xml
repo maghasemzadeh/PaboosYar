@@ -16,6 +16,12 @@
     <string name="password">رمز</string>
     <string name="connection_error">خطا در ارتباط با سرور</string>
     <string name="welcome_khadem">خادم عزیز، خوش آمدید.</string>
+    <string name="food">غذا</string>
+    <string name="cultural">فرهنگی</string>
+    <string name="recreational">تفریحی</string>
+    <string name="train">قطار</string>
+    <string name="blanket">پتو</string>
+    <string name="entity">تشخیص هویت</string>
 
 
     <string-array name="actions">

@@ -53,10 +53,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         acceptSound = MediaPlayer.create(this, R.raw.accept);
         rejectSound = MediaPlayer.create(this, R.raw.reject);
 
-        mCameraPriview = findViewById(R.id.activity_result_camera_preview);
+        mCameraPriview = findViewById(R.id.activity_scanner_camera_preview);
         mResultTv = findViewById(R.id.frg_result_main_text_view);
         mEnableBtn = findViewById(R.id.frg_done_button);
-        mSpinner = findViewById(R.id.activity_main_actions_spinner);
+        mSpinner = findViewById(R.id.activity_scanner_actions_spinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.actions, android.R.layout.simple_spinner_item);
