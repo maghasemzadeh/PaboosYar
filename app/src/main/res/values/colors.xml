@@ -9,8 +9,9 @@
     <color name="red_transparent">#80ff816e</color>
     <color name="red">#ff1500</color>
     <color name="white">#80ffffff</color>
-    <color name="paboos_blue">#00adee</color>
+    <color name="paboos_blue">#287499</color>
     <color name="paboos_blue_transparent">#8800adee</color>
     <color name="paboos_dark_blue">#0098d1</color>
     <color name="paboos_dark_blue_transparent">#880098d1</color>
+    <color name="khaki">#BC7823</color>
 </resources>

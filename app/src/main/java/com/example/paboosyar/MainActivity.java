@@ -3,6 +3,7 @@ package com.example.paboosyar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     Button mEntityBtn;
 
 
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +31,11 @@ public class MainActivity extends AppCompatActivity {
         mRecreationalBtn = findViewById(R.id.activity_main_recreational_button);
         mTrainBtn = findViewById(R.id.activity_main_train_button);
         mBlanketBtn = findViewById(R.id.activity_main_blanket_button);
-        mEntityBtn = findViewById(R.id.activity_main_Entity_button);
+        mEntityBtn = findViewById(R.id.activity_main_entity_button);
 
 
+        preferences = getApplicationContext().getSharedPreferences("mainPref", 0);
+        editor = preferences.edit();
     }
 
 
@@ -72,5 +78,13 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("title", getString(R.string.cultural));
         intent.putExtra("has_history", true);
         startActivity(intent);
+    }
+
+    public void logout(View view) {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+        editor.putString(Prefs.TOKEN, "");
+        editor.commit();
     }
 }

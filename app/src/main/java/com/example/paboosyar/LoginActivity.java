@@ -12,10 +12,7 @@ import android.widget.Toast;
 
 import com.example.paboosyar.RetrofitModels.Authentication;
 import com.example.paboosyar.RetrofitModels.User;
-import com.example.paboosyar.RetrofitModels.retrofitHandler;
-import com.google.android.gms.auth.api.Auth;
-
-import java.io.IOException;
+import com.example.paboosyar.RetrofitModels.NetworkAPIService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
 
 
-        retrofitHandler retrofitHandler = retrofit.create(retrofitHandler.class);
+        NetworkAPIService retrofitHandler = retrofit.create(NetworkAPIService.class);
 
         Call<Authentication> call = retrofitHandler.getToken((new User(username, password)));
         call.enqueue(new Callback<Authentication>() {
@@ -79,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, getString(R.string.welcome_khadem), Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "رمز یا نام‌کاربری صحیح نمی‌باشد.", Toast.LENGTH_LONG).show();
 
                 }
             }

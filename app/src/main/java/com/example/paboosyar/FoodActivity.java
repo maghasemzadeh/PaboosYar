@@ -19,7 +19,8 @@ public class FoodActivity extends AppCompatActivity {
         Intent intent = new Intent(FoodActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.men));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", "dining/program/22/receipt");
+        intent.putExtra("url", "dining/program/22/receipt/");
+        intent.putExtra("history_url", "dining/program/22/");
         startActivity(intent);
     }
 
@@ -27,7 +28,8 @@ public class FoodActivity extends AppCompatActivity {
         Intent intent = new Intent(FoodActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.graduated));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", "dining/program/23/receipt");
+        intent.putExtra("url", "dining/program/23/receipt/");
+        intent.putExtra("history_url", "dining/program/23/");
         startActivity(intent);
     }
 
@@ -36,6 +38,7 @@ public class FoodActivity extends AppCompatActivity {
         intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.women));
         intent.putExtra("has_history", true);
         intent.putExtra("url", "dining/program/24/receipt/");
+        intent.putExtra("history_url", "dining/program/24/");
         startActivity(intent);
     }
 }

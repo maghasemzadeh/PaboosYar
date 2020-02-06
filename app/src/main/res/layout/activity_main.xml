@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/paboos_blue">
+    android:background="@color/paboos_blue"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingRight="80dp"
+    android:paddingLeft="80dp">
+
 
     <Button
         android:id="@+id/activity_main_food_button"
-        android:layout_width="@dimen/default_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/main_activity_top_margin"
-        android:layout_marginEnd="@dimen/right_margin"
         android:background="@color/paboos_dark_blue"
+        android:onClick="showFood"
         android:text="@string/food"
         android:textSize="@dimen/default_text_size"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="showFood"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/activity_main_cultural_button"
-        android:layout_width="@dimen/default_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/activity_main_food_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginEnd="@dimen/right_margin"
         android:background="@color/paboos_dark_blue"
         android:text="@string/cultural"
         android:textSize="@dimen/default_text_size"
@@ -36,12 +37,11 @@
 
     <Button
         android:id="@+id/activity_main_recreational_button"
-        android:layout_width="@dimen/default_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/activity_main_cultural_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginEnd="@dimen/right_margin"
         android:background="@color/paboos_dark_blue"
         android:text="@string/recreational"
         android:textSize="@dimen/default_text_size"
@@ -51,12 +51,11 @@
 
     <Button
         android:id="@+id/activity_main_train_button"
-        android:layout_width="@dimen/default_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/activity_main_recreational_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginEnd="@dimen/right_margin"
         android:background="@color/paboos_dark_blue"
         android:text="@string/train"
         android:textSize="@dimen/default_text_size"
@@ -65,12 +64,11 @@
 
     <Button
         android:id="@+id/activity_main_blanket_button"
-        android:layout_width="@dimen/default_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/activity_main_train_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginEnd="@dimen/right_margin"
         android:background="@color/paboos_dark_blue"
         android:text="@string/blanket"
         android:textSize="@dimen/default_text_size"
@@ -78,16 +76,29 @@
 
 
     <Button
-        android:id="@+id/activity_main_Entity_button"
-        android:layout_width="@dimen/default_width"
+        android:id="@+id/activity_main_entity_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/activity_main_blanket_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:layout_marginEnd="@dimen/right_margin"
         android:background="@color/paboos_dark_blue"
         android:text="@string/entity"
         android:textSize="@dimen/default_text_size"
         android:onClick="showEntity"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/activity_main_logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/activity_main_entity_button"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@color/red"
+        android:text="@string/logout"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="logout"/>
+
+</LinearLayout>

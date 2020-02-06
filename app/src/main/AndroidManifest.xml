@@ -18,19 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FoodActivity"></activity>
-        <activity android:name=".CulturalActivity" />
-        <activity android:name=".RecreationalActivity" />
+        <activity android:name=".FoodActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CulturalActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RecreationalActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".LoginActivity">
-
-
-        </activity>
-        <activity android:name=".WelcomeActivity">
-
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".WelcomeActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

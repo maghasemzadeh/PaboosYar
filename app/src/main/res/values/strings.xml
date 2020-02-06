@@ -33,6 +33,8 @@
     <string name="men">بردران</string>
     <string name="women">خواهران</string>
     <string name="graduated">فارغ‌التحصیلان</string>
+    <string name="logout">خروج</string>
+    <string name="refreshing">در حال بروزرسانی...</string>
 
 
     <string-array name="actions">
