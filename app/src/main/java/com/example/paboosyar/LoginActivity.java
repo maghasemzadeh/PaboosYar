@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         mUsernameEt = findViewById(R.id.activity_login_username_et);
         mPasswordEt = findViewById(R.id.activity_login_password_tv);
 
-        preferences = getApplicationContext().getSharedPreferences("mainPref", 0);
+        preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
         editor = preferences.edit();
         if(preferences.getString(Prefs.TOKEN, "") != "") {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);

@@ -1,7 +1,6 @@
 package com.example.paboosyar;
 
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -20,11 +19,12 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.SparseArray;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +36,7 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.kinda.alert.KAlertDialog;
 
 import java.io.IOException;
 
@@ -54,14 +55,14 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     SurfaceView mCameraPriview;
     TextView mResultTv;
     Button mEnableBtn;
-    TextView mHistory;
-    ImageView mRefresh;
 
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
 
     MediaPlayer acceptSound;
     MediaPlayer rejectSound;
+
+    KAlertDialog statDialog;
 
     boolean hasHistory;
 
@@ -92,37 +93,29 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
 
         acceptSound = MediaPlayer.create(this, R.raw.accept);
-        rejectSound = MediaPlayer.create(this, R.raw.reject);
+        rejectSound = MediaPlayer.create(this, R.raw.wrong_answer);
 
         mCameraPriview = findViewById(R.id.activity_scanner_camera_preview);
         mResultTv = findViewById(R.id.frg_result_message_text_view);
         mEnableBtn = findViewById(R.id.frg_done_button);
-        mHistory = findViewById(R.id.activity_scanner_history);
-        mRefresh = findViewById(R.id.activity_scanner_ic_refresh);
 
-        preferences = getApplicationContext().getSharedPreferences("mainPref", 0);
+        preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
         token = preferences.getString(Prefs.TOKEN, "");
         authorization = "Token " + token;
 
         setTitle(getIntent().getExtras().getString("title"));
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        getSupportActionBar().setCustomView(R.layout.activity_scanner);
+
+
+        // Stat Dialog
+        statDialog = new KAlertDialog(ScannerActivity.this)
+                .setTitleText(getString(R.string.stat))
+                .setConfirmText(getString(R.string.ok));
 
 
         url = getIntent().getExtras().getString("url");
         historyUrl = getIntent().getExtras().getString("history_url");
 
 
-        hasHistory = getIntent().getExtras().getBoolean("has_history");
-        if (hasHistory) {
-            mHistory.setVisibility(View.VISIBLE);
-            mRefresh.setVisibility(View.VISIBLE);
-            refresh(mRefresh);
-        }
-        else{
-            mRefresh.setVisibility(View.INVISIBLE);
-            mHistory.setVisibility(View.INVISIBLE);
-        }
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
 
@@ -159,9 +152,9 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                 if(toast != null)
                     toast.cancel();
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                if (! isInSquare(qrCodes.valueAt(0).cornerPoints)) 
-                    return;
                 if(qrCodes.size() != 0) {
+                    if (! isInSquare(qrCodes.valueAt(0).cornerPoints))
+                        return;
                     mCameraPriview.post(() -> {
                         try {
                             if(token.equals("")) {
@@ -183,7 +176,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                                         FragmentManager fm = getSupportFragmentManager();
                                         ResultFragment fragment = new ResultFragment();
                                         FragmentTransaction ft = fm.beginTransaction();
-                                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                                        ft.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, R.anim.slide_up, R.anim.slide_down);
                                         ft.addToBackStack(null);
                                         ft.replace(R.id.main_layout,fragment).commit();
                                         fragment.setType(ok);
@@ -216,16 +209,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
             }
         });
 
-//        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-//        if (! (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-//                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED)) {
-//            cameraSource.stop();
-//            createNetErrorDialog();
-//        } else {
-//            initializeCamera(mCameraPriview.getHolder());
-//            Log.d(mylog, "inited");
-//        }
-//        initializeCamera(mCameraPriview.getHolder());
     }
 
     private boolean isInSquare(Point[] cornerPoints) {
@@ -292,15 +275,13 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         return result.toString();
     }
 
-    public void refresh(View view) {
-        toast = Toast.makeText(this, getString(R.string.refreshing), Toast.LENGTH_SHORT);
-        toast.show();
+    public void refresh() {
         Call<Response> call = retrofitHandler.getHistory(authorization, historyUrl);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (response.isSuccessful()) {
-                    mHistory.setText(makeHistoryText(response.body().getMeal()));
+                        statDialog.setContentText(makeStatText(response.body().getMeal())).show();
                 } else {
                     toast = Toast.makeText(ScannerActivity.this, response.message(), Toast.LENGTH_SHORT);
                     toast.show();
@@ -309,16 +290,16 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
             @Override
             public void onFailure(Call<Response> call, Throwable t) {
-                toast = Toast.makeText(ScannerActivity.this, "Refresh Failed", Toast.LENGTH_SHORT);
+                toast = Toast.makeText(ScannerActivity.this, getString(R.string.connection_error), Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
     }
 
-    private String makeHistoryText(Meal meal) {
-        String result = "آمار ثبت شده: ";
+    private String makeStatText(Meal meal) {
+        String result = "ثبت شده: ";
         result += meal.getReceipt_count();
-        result += "\nآمار درخواستی: ";
+        result += "\n درخواستی: ";
         result += meal.getTotal();
         return result;
     }
@@ -347,5 +328,34 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     @Override
     public void onFragmentFinished() {
         initializeCamera(mCameraPriview.getHolder());
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.stat_menu, menu);
+
+        hasHistory = getIntent().getExtras().getBoolean("has_history");
+        MenuItem item = menu.findItem(R.id.stat);
+        if (hasHistory)
+            item.setVisible(true);
+        else
+            item.setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.stat:
+                refresh();
+                return true;
+            case R.id.back:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

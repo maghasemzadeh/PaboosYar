@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mEntityBtn = findViewById(R.id.activity_main_entity_button);
 
 
-        preferences = getApplicationContext().getSharedPreferences("mainPref", 0);
+        preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
         editor = preferences.edit();
     }
 

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" >
-    <stroke android:color="@color/paboos_dark_blue_transparent" android:width="5dp"/>
-    <corners android:radius="10dp"/>
-    <solid android:color="@color/paboos_blue_transparent"/>
-    <size android:width="@dimen/default_width" android:height="35dp"/>
-</shape>

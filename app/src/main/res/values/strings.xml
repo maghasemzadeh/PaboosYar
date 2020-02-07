@@ -47,7 +47,8 @@
     <string name="train_no">شماره قطار:</string>
     <string name="wagon_no">شماره واگن:</string>
     <string name="coupe_no">شماره کوپه:</string>
-
+    <string name="stat">آمار</string>
+    <string name="ok">باشه</string>
 
     <string-array name="actions">
         <item>غذا</item>
