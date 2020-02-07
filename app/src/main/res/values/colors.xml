@@ -3,10 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="green_transparent">#8057f759</color>
+    <color name="green_transparent">#bb57f759</color>
     <color name="green">#09991c</color>
     <color name="black">#000000</color>
-    <color name="red_transparent">#80ff816e</color>
+    <color name="red_transparent">#bbff816e</color>
     <color name="red">#ff1500</color>
     <color name="dark_khaki">#99BC7823</color>
     <color name="paboos_blue">#287499</color>
@@ -15,4 +15,5 @@
     <color name="paboos_dark_blue_transparent">#880098d1</color>
     <color name="khaki">#BC7823</color>
     <color name="blue">#00f</color>
+    <color name="white">#fff</color>
 </resources>

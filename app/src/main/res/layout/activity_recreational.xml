@@ -56,10 +56,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@drawable/logout_backgroun_button"
+        android:background="@drawable/logout_background_button"
         android:text="@string/back"
         android:textSize="@dimen/default_text_size"
-        android:onClick="back" />
+        android:onClick="back"
+        android:textColor="@color/black"/>
 
 
 

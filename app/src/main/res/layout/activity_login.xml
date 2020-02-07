@@ -47,6 +47,7 @@
             android:background="@color/khaki"
             android:onClick="signIn"
             android:textSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/black"/>
 
 </LinearLayout>

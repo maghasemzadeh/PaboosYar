@@ -48,10 +48,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ScannerActivity extends AppCompatActivity implements ResultFragment.OnFragmentInteractionListener {
 
 
-    String mylog = "mylog";
-
-
-
     SurfaceView mCameraPriview;
     TextView mResultTv;
     Button mEnableBtn;
@@ -61,8 +57,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     MediaPlayer acceptSound;
     MediaPlayer rejectSound;
-
-    KAlertDialog statDialog;
+    MediaPlayer clickSound;
 
     boolean hasHistory;
 
@@ -94,6 +89,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
         acceptSound = MediaPlayer.create(this, R.raw.accept);
         rejectSound = MediaPlayer.create(this, R.raw.wrong_answer);
+        clickSound = MediaPlayer.create(this, R.raw.click_sound);
 
         mCameraPriview = findViewById(R.id.activity_scanner_camera_preview);
         mResultTv = findViewById(R.id.frg_result_message_text_view);
@@ -105,11 +101,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
         setTitle(getIntent().getExtras().getString("title"));
 
-
-        // Stat Dialog
-        statDialog = new KAlertDialog(ScannerActivity.this)
-                .setTitleText(getString(R.string.stat))
-                .setConfirmText(getString(R.string.ok));
 
 
         url = getIntent().getExtras().getString("url");
@@ -281,7 +272,11 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (response.isSuccessful()) {
-                        statDialog.setContentText(makeStatText(response.body().getMeal())).show();
+                    new KAlertDialog(ScannerActivity.this)
+                            .setTitleText(getString(R.string.stat))
+                            .setConfirmText(getString(R.string.ok))
+                            .setContentText(makeStatText(response.body().getMeal()))
+                            .show();
                 } else {
                     toast = Toast.makeText(ScannerActivity.this, response.message(), Toast.LENGTH_SHORT);
                     toast.show();
@@ -349,6 +344,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.stat:
+                clickSound.start();
                 refresh();
                 return true;
             case R.id.back:

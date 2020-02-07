@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/menu_background"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/side_padding"
     android:paddingRight="@dimen/side_padding"
-    android:paddingLeft="@dimen/side_padding">
-
+    android:background="@drawable/menu_background"
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/activity_main_food_button"
@@ -29,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
         android:background="@drawable/button_background"
+        android:onClick="showCultural"
         android:text="@string/cultural"
-        android:textSize="@dimen/default_text_size"
-        android:onClick="showCultural"/>
+        android:textSize="@dimen/default_text_size" />
 
     <Button
         android:id="@+id/activity_main_recreational_button"
@@ -39,9 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
         android:background="@drawable/button_background"
+        android:onClick="showRecreational"
         android:text="@string/recreational"
-        android:textSize="@dimen/default_text_size"
-        android:onClick="showRecreational"/>
+        android:textSize="@dimen/default_text_size" />
 
 
     <Button
@@ -50,9 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
         android:background="@drawable/button_background"
+        android:onClick="showBlanket"
         android:text="@string/blanket"
-        android:textSize="@dimen/default_text_size"
-        android:onClick="showBlanket"/>
+        android:textSize="@dimen/default_text_size" />
 
 
     <Button
@@ -61,10 +60,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
         android:background="@drawable/button_background"
+        android:onClick="showEntity"
         android:text="@string/entity"
-        android:textSize="@dimen/default_text_size"
-        android:onClick="showEntity"/>
-
+        android:textSize="@dimen/default_text_size" />
 
 
     <Button
@@ -72,9 +70,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@drawable/logout_backgroun_button"
+        android:background="@drawable/logout_background_button"
+        android:onClick="logout"
         android:text="@string/logout"
         android:textSize="@dimen/default_text_size"
-        android:onClick="logout" />
+        android:textColor="@color/black"/>
 
 </LinearLayout>

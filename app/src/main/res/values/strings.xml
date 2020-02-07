@@ -30,7 +30,7 @@
     <string name="rest_home_view_janbaz">بازدید آسایشگاه جانبازان امام خمنینی</string>
     <string name="rest_home_malool_view">بازدید از آسایشگاه معلولین فیاض‌بخش</string>
     <string name="sample">نمونه</string>
-    <string name="men">بردران</string>
+    <string name="men">برادران</string>
     <string name="women">خواهران</string>
     <string name="graduated">فارغ‌التحصیلان</string>
     <string name="logout">خروج</string>
@@ -49,6 +49,7 @@
     <string name="coupe_no">شماره کوپه:</string>
     <string name="stat">آمار</string>
     <string name="ok">باشه</string>
+    <string name="requests">درخواست‌ها</string>
 
     <string-array name="actions">
         <item>غذا</item>
