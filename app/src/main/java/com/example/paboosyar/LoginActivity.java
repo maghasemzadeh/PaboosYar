@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.paboosyar.RetrofitModels.Authentication;
@@ -26,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     EditText mUsernameEt;
     EditText mPasswordEt;
+    ImageView azzahraaLogo;
 
 
     SharedPreferences preferences;
@@ -39,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.activity_login_sign_in_button);
         mUsernameEt = findViewById(R.id.activity_login_username_et);
         mPasswordEt = findViewById(R.id.activity_login_password_tv);
+        azzahraaLogo = findViewById(R.id.azzahraa_logo);
 
         preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
         editor = preferences.edit();
@@ -53,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     public void signIn(View view) {
         String username = String.valueOf(mUsernameEt.getText());
         String password = String.valueOf(mPasswordEt.getText());
+
 
 
 

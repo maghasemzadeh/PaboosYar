@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,6 +14,8 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
@@ -44,7 +47,7 @@ public class ResultFragment extends Fragment {
 
     GridLayout mGrid;
 
-
+    ConstraintLayout root;
     Response response;
 
     public void setType(boolean b) {
@@ -97,10 +100,16 @@ public class ResultFragment extends Fragment {
             getContext().setTheme(R.style.WrongTheme);
 
 
+
         View rootView = inflater.inflate(R.layout.fragment_result, container, false);
         resultTv = rootView.findViewById(R.id.frg_result_message_text_view);
         mName = rootView.findViewById(R.id.frg_result_name_text_view);
         mGrid = rootView.findViewById(R.id.frg_result_grid);
+        root = rootView.findViewById(R.id.frg_result_root);
+
+
+//        Animation aniFade = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+//        root.startAnimation(aniFade);
 
         response = mListener.getResponse();
 
