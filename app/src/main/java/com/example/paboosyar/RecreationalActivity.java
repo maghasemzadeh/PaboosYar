@@ -48,4 +48,7 @@ public class RecreationalActivity extends AppCompatActivity {
     }
 
 
+    public void back(View view) {
+        finish();
+    }
 }

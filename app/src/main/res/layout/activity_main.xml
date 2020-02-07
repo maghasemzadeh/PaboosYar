@@ -8,15 +8,15 @@
     android:background="@color/paboos_blue"
     android:orientation="vertical"
     android:gravity="center"
-    android:paddingRight="80dp"
-    android:paddingLeft="80dp">
+    android:paddingRight="@dimen/side_padding"
+    android:paddingLeft="@dimen/side_padding">
 
 
     <Button
         android:id="@+id/activity_main_food_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/paboos_dark_blue"
+        android:background="@drawable/button_background"
         android:onClick="showFood"
         android:text="@string/food"
         android:textSize="@dimen/default_text_size"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_main_food_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@color/paboos_dark_blue"
+        android:background="@drawable/button_background"
         android:text="@string/cultural"
         android:textSize="@dimen/default_text_size"
         android:onClick="showCultural"/>
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_main_cultural_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@color/paboos_dark_blue"
+        android:background="@drawable/button_background"
         android:text="@string/recreational"
         android:textSize="@dimen/default_text_size"
         android:onClick="showRecreational"/>
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_main_recreational_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@color/paboos_dark_blue"
+        android:background="@drawable/button_background"
         android:text="@string/train"
         android:textSize="@dimen/default_text_size"
         android:onClick="showTrain"/>
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_main_train_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@color/paboos_dark_blue"
+        android:background="@drawable/button_background"
         android:text="@string/blanket"
         android:textSize="@dimen/default_text_size"
         android:onClick="showBlanket"/>
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_main_blanket_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@color/paboos_dark_blue"
+        android:background="@drawable/button_background"
         android:text="@string/entity"
         android:textSize="@dimen/default_text_size"
         android:onClick="showEntity"/>
@@ -96,9 +96,9 @@
         app:layout_constraintTop_toBottomOf="@id/activity_main_entity_button"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="@dimen/top_margin"
-        android:background="@color/red"
+        android:background="@drawable/logout_backgroun_button"
         android:text="@string/logout"
         android:textSize="@dimen/default_text_size"
-        android:onClick="logout"/>
+        android:onClick="logout" />
 
 </LinearLayout>

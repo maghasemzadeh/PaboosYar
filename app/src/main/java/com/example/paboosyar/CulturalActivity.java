@@ -34,4 +34,8 @@ public class CulturalActivity extends AppCompatActivity {
         intent.putExtra("has_history", true);
         startActivity(intent);
     }
+
+    public void back(View view) {
+        finish();
+    }
 }

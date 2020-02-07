@@ -35,6 +35,8 @@
     <string name="graduated">فارغ‌التحصیلان</string>
     <string name="logout">خروج</string>
     <string name="refreshing">در حال بروزرسانی...</string>
+    <string name="back">بازگشت</string>
+    <string name="incorrect_pass">لطفا رمزعبور و نام‌کاربری را به درستی وارد نمایید.</string>
 
 
     <string-array name="actions">

@@ -2,15 +2,16 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:opacity="opaque">
     <item>
-        <bitmap android:src="@drawable/paboos_blur" />
+        <bitmap android:src="@drawable/paboos" />
     </item>
     <item>
         <shape>
             <gradient
                 android:angle="90"
-                android:startColor="#bb00aaff"
+                android:startColor="@color/paboos_blue"
+                android:centerColor="@color/paboos_blue_transparent"
                 android:endColor="#0000"
-                android:centerColor="#a000"/>
+                android:centerY="30%"/>
         </shape>
     </item>
 </layer-list>

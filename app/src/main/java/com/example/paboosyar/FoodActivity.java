@@ -41,4 +41,8 @@ public class FoodActivity extends AppCompatActivity {
         intent.putExtra("history_url", "dining/program/24/");
         startActivity(intent);
     }
+
+    public void back(View view) {
+        finish();
+    }
 }

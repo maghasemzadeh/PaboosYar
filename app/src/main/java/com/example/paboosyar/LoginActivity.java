@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, getString(R.string.welcome_khadem), Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    Toast.makeText(LoginActivity.this, "رمز یا نام‌کاربری صحیح نمی‌باشد.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.incorrect_pass), Toast.LENGTH_LONG).show();
 
                 }
             }
