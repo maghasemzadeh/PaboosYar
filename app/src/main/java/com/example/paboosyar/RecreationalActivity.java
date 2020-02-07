@@ -21,6 +21,8 @@ public class RecreationalActivity extends AppCompatActivity {
         Intent intent = new Intent(RecreationalActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.blue_waves_pool));
         intent.putExtra("has_history", true);
+        intent.putExtra("url", "program/25/sub_program/59/");
+        intent.putExtra("history_url", "program/25/sub_program/59/");
         startActivity(intent);
     }
 
@@ -29,6 +31,8 @@ public class RecreationalActivity extends AppCompatActivity {
         Intent intent = new Intent(RecreationalActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.paintball));
         intent.putExtra("has_history", true);
+        intent.putExtra("url", "program/25/sub_program/60/");
+        intent.putExtra("history_url", "program/25/sub_program/60/");
         startActivity(intent);
     }
 
@@ -37,6 +41,8 @@ public class RecreationalActivity extends AppCompatActivity {
         Intent intent = new Intent(RecreationalActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.bowling));
         intent.putExtra("has_history", true);
+        intent.putExtra("url", "program/25/sub_program/76/");
+        intent.putExtra("history_url", "program/25/sub_program/76/");
         startActivity(intent);
     }
 
@@ -44,6 +50,8 @@ public class RecreationalActivity extends AppCompatActivity {
         Intent intent = new Intent(RecreationalActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.futsal));
         intent.putExtra("has_history", true);
+        intent.putExtra("url", "program/25/sub_program/61/");
+        intent.putExtra("history_url", "program/25/sub_program/61/");
         startActivity(intent);
     }
 

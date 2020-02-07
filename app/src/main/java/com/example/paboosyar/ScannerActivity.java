@@ -1,6 +1,7 @@
 package com.example.paboosyar;
 
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -12,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -52,7 +54,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     SurfaceView mCameraPriview;
     TextView mResultTv;
     Button mEnableBtn;
-    TextView mTitle;
     TextView mHistory;
     ImageView mRefresh;
 
@@ -67,11 +68,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     Toast toast;
 
-    String message = "";
-    String name = "";
     String authorization;
     String url = "";
     String historyUrl = "";
+    Response resp;
 
     SharedPreferences preferences;
 
@@ -89,13 +89,14 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
+
+
         acceptSound = MediaPlayer.create(this, R.raw.accept);
         rejectSound = MediaPlayer.create(this, R.raw.reject);
 
         mCameraPriview = findViewById(R.id.activity_scanner_camera_preview);
         mResultTv = findViewById(R.id.frg_result_message_text_view);
         mEnableBtn = findViewById(R.id.frg_done_button);
-        mTitle = findViewById(R.id.activity_scanner_title);
         mHistory = findViewById(R.id.activity_scanner_history);
         mRefresh = findViewById(R.id.activity_scanner_ic_refresh);
 
@@ -103,12 +104,16 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         token = preferences.getString(Prefs.TOKEN, "");
         authorization = "Token " + token;
 
+        setTitle(getIntent().getExtras().getString("title"));
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//        getSupportActionBar().setCustomView(R.layout.activity_scanner);
+
+
         url = getIntent().getExtras().getString("url");
         historyUrl = getIntent().getExtras().getString("history_url");
 
 
         hasHistory = getIntent().getExtras().getBoolean("has_history");
-        mTitle.setText(getIntent().getExtras().getString("title"));
         if (hasHistory) {
             mHistory.setVisibility(View.VISIBLE);
             mRefresh.setVisibility(View.VISIBLE);
@@ -154,6 +159,8 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                 if(toast != null)
                     toast.cancel();
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
+                if (! isInSquare(qrCodes.valueAt(0).cornerPoints)) 
+                    return;
                 if(qrCodes.size() != 0) {
                     mCameraPriview.post(() -> {
                         try {
@@ -171,14 +178,13 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                                     if(response.isSuccessful()) {
                                         boolean ok = response.body().isOk();
+                                        resp = response.body();
                                         Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                         FragmentManager fm = getSupportFragmentManager();
                                         ResultFragment fragment = new ResultFragment();
                                         FragmentTransaction ft = fm.beginTransaction();
                                         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                                         ft.addToBackStack(null);
-                                        message = response.body().getMessage();
-                                        name = response.body().getUser().getName();
                                         ft.replace(R.id.main_layout,fragment).commit();
                                         fragment.setType(ok);
                                         if(ok) {
@@ -220,6 +226,17 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 //            Log.d(mylog, "inited");
 //        }
 //        initializeCamera(mCameraPriview.getHolder());
+    }
+
+    private boolean isInSquare(Point[] cornerPoints) {
+        for (Point p: cornerPoints) {
+            if (p.x < 0.23f * mCameraPriview.getWidth() ||
+                    p.y < 0.35f * mCameraPriview.getHeight() ||
+                    p.x > 0.4f * mCameraPriview.getWidth() + 400 ||
+                    p.y > 0.44f * mCameraPriview.getHeight() + 400)
+                return false;
+        }
+        return true;
     }
 
 
@@ -322,15 +339,13 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     }
 
     @Override
-    public String getResponse() {
-        return message;
+    public Response getResponse() {
+        return resp;
     }
 
-    @Override
-    public String getName() {return name;}
 
     @Override
-    public void onFragmentInteraction() {
+    public void onFragmentFinished() {
         initializeCamera(mCameraPriview.getHolder());
     }
 }

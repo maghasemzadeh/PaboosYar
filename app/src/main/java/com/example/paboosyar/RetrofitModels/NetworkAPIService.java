@@ -19,7 +19,7 @@ public interface NetworkAPIService {
     String MEN_FOOD_HISTORY = "dining/program/22/";
     String GRADUATED_FOOD_HISTORY = "dining/program/23/";
     String WOMEN_FOOD_HISTORY = "dining/program/24/";
-    String ENTITY = "account/detail/";
+    String ENTITY = "account/details/";
 
 
     @POST("auth/token/login")

@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity {
     Button mFoodBtn;
     Button mCulturalBtn;
     Button mRecreationalBtn;
-    Button mTrainBtn;
     Button mBlanketBtn;
     Button mEntityBtn;
 
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         mFoodBtn = findViewById(R.id.activity_main_food_button);
         mCulturalBtn  = findViewById(R.id.activity_main_cultural_button);
         mRecreationalBtn = findViewById(R.id.activity_main_recreational_button);
-        mTrainBtn = findViewById(R.id.activity_main_train_button);
         mBlanketBtn = findViewById(R.id.activity_main_blanket_button);
         mEntityBtn = findViewById(R.id.activity_main_entity_button);
 
@@ -58,12 +56,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showTrain(View view) {
-        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
-        intent.putExtra("title", getString(R.string.train));
-        intent.putExtra("has_history", false);
-        startActivity(intent);
-    }
 
     public void showRecreational(View view) {
         Intent intent = new Intent(MainActivity.this, RecreationalActivity.class);

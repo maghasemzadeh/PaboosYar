@@ -1,6 +1,8 @@
 package com.example.paboosyar;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,7 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
+
+import com.example.paboosyar.RetrofitModels.Response;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -34,7 +42,10 @@ public class ResultFragment extends Fragment {
     TextView resultTv;
     TextView mName;
 
-    String message = "";
+    GridLayout mGrid;
+
+
+    Response response;
 
     public void setType(boolean b) {
         accepted = b;
@@ -79,37 +90,76 @@ public class ResultFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (accepted)
             getContext().setTheme(R.style.CorrectTheme);
         else
             getContext().setTheme(R.style.WrongTheme);
+
+
         View rootView = inflater.inflate(R.layout.fragment_result, container, false);
         resultTv = rootView.findViewById(R.id.frg_result_message_text_view);
         mName = rootView.findViewById(R.id.frg_result_name_text_view);
-        resultTv.setText(mListener.getResponse());
-        mName.setText(mListener.getName());
+        mGrid = rootView.findViewById(R.id.frg_result_grid);
+
+        response = mListener.getResponse();
+
+        resultTv.setText(response.getMessage());
+
+        if (response.getUser() != null) {
+            mName.setText(response.getUser().getName());
+            List<String> lables = new ArrayList<>();
+            lables.add(getString(R.string.father_name));
+            lables.add(getString(R.string.phone_number));
+            lables.add(getString(R.string.train_no));
+            lables.add(getString(R.string.wagon_no));
+            lables.add(getString(R.string.coupe_no));
+            List<Object> details = new ArrayList<>();
+            details.add(response.getUser().getFatherName());
+            details.add(response.getUser().getMobile());
+            details.add(response.getUser().getTrain());
+            details.add(response.getUser().getWagon());
+            details.add(response.getUser().getCoupe());
+
+            for (int i = 0 ; i < details.size() ; i++) {
+                if (details.get(i) == null )
+                    continue;
+                String s = details.get(i).toString();
+                if (s.equals(""))
+                    continue;
+                TextView labelTv = new TextView(getContext());
+                labelTv.setText(lables.get(i));
+                labelTv.setPadding(0, 10, 50, 0);
+                labelTv.requestLayout();
+                TextView detailTv = new TextView(getContext());
+                detailTv.setPadding(0, 10, 50, 0);
+                detailTv.requestLayout();
+                detailTv.setText(s);
+                mGrid.addView(labelTv);
+                mGrid.addView(detailTv);
+
+                if (i == 1) {
+                    detailTv.setOnClickListener(this::call);
+                    detailTv.setTextColor(getResources().getColor(R.color.blue));
+                    detailTv.setPaintFlags(detailTv.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                }
+            }
+
+        }
+
         enableBtn = rootView.findViewById(R.id.frg_done_button);
         enableBtn.setOnClickListener(v -> {
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentManager.popBackStackImmediate();
             fragmentTransaction.commit();
-            if(mListener != null){
-                mListener.onFragmentInteraction();
+            if (mListener != null) {
+                mListener.onFragmentFinished();
             }
         });
         return rootView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction();
-        }
-    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -122,10 +172,9 @@ public class ResultFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        String getResponse();
-        void onFragmentInteraction();
+        Response getResponse();
 
-        String getName();
+        void onFragmentFinished();
     }
 
 
@@ -138,6 +187,21 @@ public class ResultFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mListener.onFragmentFinished();
+    }
+
+    public void call(View view) {
+        String phone_no= ((TextView)view).getText().toString().replaceAll("-", "");
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        callIntent.setData(Uri.parse("tel:+98" + phone_no.substring(1)));
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(callIntent);
+        enableBtn.callOnClick();
     }
 
 }

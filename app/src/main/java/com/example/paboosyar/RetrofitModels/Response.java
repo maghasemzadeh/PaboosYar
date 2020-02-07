@@ -4,21 +4,12 @@ public class Response {
 
     public boolean ok;
     public String message;
-    public String name;
     public String program;
     public Meal meal;
     public User user;
 
     public User getUser() {
         return user;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getProgram() {
@@ -37,10 +28,9 @@ public class Response {
         this.meal = meal;
     }
 
-    public Response(boolean ok, String message, String name, String program, Meal meal, User user) {
+    public Response(boolean ok, String message, String program, Meal meal, User user) {
         this.ok = ok;
         this.message = message;
-        this.name = name;
         this.program = program;
         this.meal = meal;
         this.user = user;
