@@ -1,9 +1,48 @@
 package com.example.paboosyar.RetrofitModels;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
     private String username;
 
     private String password;
+
+    private String name;
+    private String mobile;
+    private String gender;
+    @SerializedName("father_name")
+    private String fatherName;
+    private String train;
+    private String wagon;
+    private String coupe;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getFatherName() {
+        return fatherName;
+    }
+
+    public String getTrain() {
+        return train;
+    }
+
+    public String getWagon() {
+        return wagon;
+    }
+
+    public String getCoupe() {
+        return coupe;
+    }
 
     public User(String username, String password) {
         this.username = username;

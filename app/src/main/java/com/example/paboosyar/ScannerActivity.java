@@ -1,6 +1,7 @@
 package com.example.paboosyar;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
@@ -14,8 +15,8 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -42,6 +43,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ScannerActivity extends AppCompatActivity implements ResultFragment.OnFragmentInteractionListener {
+
+
+    String mylog = "mylog";
+
 
 
     SurfaceView mCameraPriview;
@@ -88,7 +93,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         rejectSound = MediaPlayer.create(this, R.raw.reject);
 
         mCameraPriview = findViewById(R.id.activity_scanner_camera_preview);
-        mResultTv = findViewById(R.id.frg_result_main_text_view);
+        mResultTv = findViewById(R.id.frg_result_message_text_view);
         mEnableBtn = findViewById(R.id.frg_done_button);
         mTitle = findViewById(R.id.activity_scanner_title);
         mHistory = findViewById(R.id.activity_scanner_history);
@@ -100,6 +105,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
         url = getIntent().getExtras().getString("url");
         historyUrl = getIntent().getExtras().getString("history_url");
+
 
         hasHistory = getIntent().getExtras().getBoolean("has_history");
         mTitle.setText(getIntent().getExtras().getString("title"));
@@ -141,12 +147,12 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
-
             }
 
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
-                toast.cancel();
+                if(toast != null)
+                    toast.cancel();
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
                 if(qrCodes.size() != 0) {
                     mCameraPriview.post(() -> {
@@ -172,7 +178,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                                         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                                         ft.addToBackStack(null);
                                         message = response.body().getMessage();
-                                        name = response.body().getName();
+                                        name = response.body().getUser().getName();
                                         ft.replace(R.id.main_layout,fragment).commit();
                                         fragment.setType(ok);
                                         if(ok) {
@@ -191,8 +197,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
                                 @Override
                                 public void onFailure(Call<Response> call, Throwable t) {
-                                    toast = Toast.makeText(ScannerActivity.this, "ridi", Toast.LENGTH_SHORT);
-                                    toast.show();
+                                    createNetErrorDialog();
                                 }
                             });
 
@@ -204,6 +209,38 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                 }
             }
         });
+
+//        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+//        if (! (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+//                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED)) {
+//            cameraSource.stop();
+//            createNetErrorDialog();
+//        } else {
+//            initializeCamera(mCameraPriview.getHolder());
+//            Log.d(mylog, "inited");
+//        }
+//        initializeCamera(mCameraPriview.getHolder());
+    }
+
+
+    protected void createNetErrorDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.please_connect_internet))
+                .setTitle(getString(R.string.internet_connection_error))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.settings),
+                        (dialog, id) -> {
+                            Intent i = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                            startActivity(i);
+                        }
+                )
+                .setNegativeButton(getString(R.string.dismiss),
+                        (dialog, id) -> {
+                            ScannerActivity.this.finish();
+                        }
+                );
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     @Override
@@ -285,7 +322,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     }
 
     @Override
-    public String getMessage() {
+    public String getResponse() {
         return message;
     }
 

@@ -37,6 +37,16 @@
     <string name="refreshing">در حال بروزرسانی...</string>
     <string name="back">بازگشت</string>
     <string name="incorrect_pass">لطفا رمزعبور و نام‌کاربری را به درستی وارد نمایید.</string>
+    <string name="no_internet_connection">شما به شبکه اینترنت متصل نیستید.</string>
+    <string name="please_connect_internet">برای استفاده از این برنامه نیاز به اتصال به شبکه اینترنت را دارید. لطفا در تنظیمات به اینترنت متصل شوید.</string>
+    <string name="internet_connection_error">خطا در اتصال</string>
+    <string name="settings">تنظیمات</string>
+    <string name="dismiss">بیخیال</string>
+    <string name="father_name">نام پدر:</string>
+    <string name="phone_number">شماره تماس:</string>
+    <string name="train_no">شماره قطار:</string>
+    <string name="wagon_no">شماره واگن:</string>
+    <string name="coupe_no">شماره کوپه:</string>
 
 
     <string-array name="actions">

@@ -87,9 +87,9 @@ public class ResultFragment extends Fragment {
         else
             getContext().setTheme(R.style.WrongTheme);
         View rootView = inflater.inflate(R.layout.fragment_result, container, false);
-        resultTv = rootView.findViewById(R.id.frg_result_main_text_view);
+        resultTv = rootView.findViewById(R.id.frg_result_message_text_view);
         mName = rootView.findViewById(R.id.frg_result_name_text_view);
-        resultTv.setText(mListener.getMessage());
+        resultTv.setText(mListener.getResponse());
         mName.setText(mListener.getName());
         enableBtn = rootView.findViewById(R.id.frg_done_button);
         enableBtn.setOnClickListener(v -> {
@@ -122,7 +122,7 @@ public class ResultFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        String getMessage();
+        String getResponse();
         void onFragmentInteraction();
 
         String getName();

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.paboosyar.RetrofitModels.NetworkAPIService;
+
 public class MainActivity extends AppCompatActivity {
 
     Button mFoodBtn;
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.entity));
         intent.putExtra("has_history", false);
+        intent.putExtra("url", NetworkAPIService.ENTITY);
+        intent.putExtra("history_url", "");
         startActivity(intent);
     }
 

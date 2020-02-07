@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RecreationalActivity"
-    android:background="@color/paboos_blue"
+    android:background="@drawable/menu_background"
     android:orientation="vertical"
     android:paddingRight="@dimen/side_padding"
     android:paddingLeft="@dimen/side_padding"

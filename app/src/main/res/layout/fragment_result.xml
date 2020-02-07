@@ -5,22 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?back_color"
-    tools:context=".ResultFragment">
+    tools:context=".ResultFragment"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp">
 
-    <TextView
-        android:id="@+id/frg_result_main_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/has_food"
-        android:textAlignment="center"
-        android:textColor="?text_color"
-        android:textSize="40dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/frg_result_name_text_view"
@@ -29,23 +17,139 @@
         android:text="نام و نام خانوادگی"
         android:textSize="50sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/frg_result_main_text_view"
+        app:layout_constraintBottom_toBottomOf="@id/frg_result_grid"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textDirection="rtl"/>
+
+    <GridLayout
+        android:id="@+id/frg_result_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/frg_result_name_text_view"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frg_result_message_text_view"
+        android:columnCount="2"
+        android:rowCount="5"
+        android:orientation="vertical"
+        android:textDirection="rtl"
+        android:layoutDirection="rtl">
+
+        <TextView
+            android:id="@+id/frg_result_father_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/father_name"/>
+
+
+        <TextView
+            android:id="@+id/frg_result_phone_number_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/phone_number"/>
+
+
+        <TextView
+            android:id="@+id/frg_result_train_no_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/train_no"/>
+
+
+        <TextView
+            android:id="@+id/frg_result_wagon_no_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/wagon_no"/>
+
+
+        <TextView
+            android:id="@+id/frg_result_coupe_no_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/coupe_no"/>
+
+        <TextView
+            android:id="@+id/frg_result_father_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:text="بابا"/>
+
+        <TextView
+            android:id="@+id/frg_result_phone_number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:text="09211111111"/>
+
+
+
+        <TextView
+            android:id="@+id/frg_result_train_no_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:text="2"/>
+
+
+        <TextView
+            android:id="@+id/frg_result_wagon_no_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:text="12"/>
+
+
+        <TextView
+            android:id="@+id/frg_result_coupe_no_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:text="36"/>
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/frg_result_message_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="متن پیام"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/frg_result_grid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textDirection="rtl"/>
 
     <Button
         android:id="@+id/frg_done_button"
-        android:layout_width="210dp"
-        android:layout_height="52dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
-        android:background="?button_color"
+        android:background="@drawable/button_background"
+        android:backgroundTint="@color/red"
         android:gravity="center"
         android:text="@string/rescan"
-        android:textColor="?text_color"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="10dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
