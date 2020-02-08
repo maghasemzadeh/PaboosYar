@@ -1,4 +1,4 @@
-package com.example.paboosyar;
+package com.azzahraa.paboosyar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.paboosyar.RetrofitModels.NetworkAPIService;
+import com.azzahraa.paboosyar.RetrofitModels.NetworkAPIService;
 
 public class FoodActivity extends AppCompatActivity {
 
@@ -35,14 +35,6 @@ public class FoodActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showWomenFood(View view) {
-        Intent intent = new Intent(FoodActivity.this, ScannerActivity.class);
-        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.women));
-        intent.putExtra("has_history", true);
-        intent.putExtra("url", NetworkAPIService.WOMEN_FOOD);
-        intent.putExtra("history_url", NetworkAPIService.WOMEN_FOOD_HISTORY);
-        startActivity(intent);
-    }
 
     public void back(View view) {
         finish();

@@ -1,4 +1,4 @@
-package com.example.paboosyar.RetrofitModels;
+package com.azzahraa.paboosyar.RetrofitModels;
 
 import com.google.gson.annotations.SerializedName;
 

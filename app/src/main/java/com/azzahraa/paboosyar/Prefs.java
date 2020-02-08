@@ -1,4 +1,4 @@
-package com.example.paboosyar;
+package com.azzahraa.paboosyar;
 
 public class Prefs {
         public static String TOKEN = "token";

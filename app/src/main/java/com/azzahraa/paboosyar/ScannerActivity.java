@@ -1,4 +1,4 @@
-package com.example.paboosyar;
+package com.azzahraa.paboosyar;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -28,10 +28,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.paboosyar.RetrofitModels.Meal;
-import com.example.paboosyar.RetrofitModels.Response;
-import com.example.paboosyar.RetrofitModels.Username;
-import com.example.paboosyar.RetrofitModels.NetworkAPIService;
+import com.azzahraa.paboosyar.RetrofitModels.Meal;
+import com.azzahraa.paboosyar.RetrofitModels.Response;
+import com.azzahraa.paboosyar.RetrofitModels.Username;
+import com.azzahraa.paboosyar.RetrofitModels.NetworkAPIService;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -64,7 +64,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     Toast toast;
 
-    String authorization;
     String url = "";
     String historyUrl = "";
     Response resp;
@@ -86,6 +85,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         setContentView(R.layout.activity_scanner);
 
 
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, 1);
+        }
 
         acceptSound = MediaPlayer.create(this, R.raw.accept);
         rejectSound = MediaPlayer.create(this, R.raw.wrong_answer);
@@ -97,7 +100,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
         preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
         token = preferences.getString(Prefs.TOKEN, "");
-        authorization = "Token " + token;
 
         setTitle(getIntent().getExtras().getString("title"));
 
@@ -156,7 +158,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                             }
                             String nationalCode = decryptNationalCode(qrCodes.valueAt(0).displayValue);
                             cameraSource.stop();
-                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode), authorization, url);
+                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode), token, url);
                             responseCall.enqueue(new Callback<Response>() {
                                 @Override
                                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -242,10 +244,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     }
 
     private void initializeCamera(SurfaceHolder holder) {
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA}, 1);
-        }
         try {
             cameraSource.start(holder);
         } catch (IOException e) {
@@ -267,7 +265,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     }
 
     public void refresh() {
-        Call<Response> call = retrofitHandler.getHistory(authorization, historyUrl);
+        Call<Response> call = retrofitHandler.getHistory(token, historyUrl);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {

@@ -1,4 +1,4 @@
-package com.example.paboosyar;
+package com.azzahraa.paboosyar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,16 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-import com.example.paboosyar.RetrofitModels.Response;
+import com.azzahraa.paboosyar.RetrofitModels.Response;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,6 +147,7 @@ public class ResultFragment extends Fragment {
                 mGrid.addView(detailTv);
 
                 if (i == 1) {
+                    detailTv.setInputType(InputType.TYPE_CLASS_PHONE);
                     detailTv.setOnClickListener(this::call);
                     detailTv.setTextColor(getResources().getColor(R.color.blue));
                     detailTv.setPaintFlags(detailTv.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);

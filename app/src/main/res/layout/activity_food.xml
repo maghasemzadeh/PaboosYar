@@ -20,15 +20,6 @@
         android:onClick="showMenFood"/>
 
 
-    <Button
-        android:id="@+id/activity_main_paintball_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/top_margin"
-        android:background="@drawable/button_background"
-        android:text="@string/women"
-        android:textSize="@dimen/default_text_size"
-        android:onClick="showWomenFood"/>
 
     <Button
         android:id="@+id/activity_main_bowling_button"

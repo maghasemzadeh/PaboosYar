@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "880012473401",
+    "firebase_url": "https://paboos-yar.firebaseio.com",
+    "project_id": "paboos-yar",
+    "storage_bucket": "paboos-yar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880012473401:android:72b580e72f917fd09f89e8",
+        "android_client_info": {
+          "package_name": "com.azzahraa.paboosyar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880012473401-qu2cp19lpf4pp8a43pk9i4rhu47ohkj8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.azzahraa.paboosyar",
+            "certificate_hash": "e2f2a5918931af87bbd7c0f3596c13cabec8d25b"
+          }
+        },
+        {
+          "client_id": "880012473401-58t00htbto0c948m3a6fpd1327je69o0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaL-dI7mSww8wNohnjloZS8Mfb7tUHG_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880012473401-58t00htbto0c948m3a6fpd1327je69o0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

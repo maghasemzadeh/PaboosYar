@@ -1,4 +1,4 @@
-package com.example.paboosyar;
+package com.azzahraa.paboosyar;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.paboosyar", appContext.getPackageName());
+        assertEquals("com.azzahraa.paboosyar", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.paboosyar.RetrofitModels;
+package com.azzahraa.paboosyar.RetrofitModels;
 
 public class Response {
 

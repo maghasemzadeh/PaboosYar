@@ -1,4 +1,4 @@
-package com.example.paboosyar;
+package com.azzahraa.paboosyar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.paboosyar.RetrofitModels.NetworkAPIService;
+import com.azzahraa.paboosyar.RetrofitModels.NetworkAPIService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.blanket));
         intent.putExtra("has_history", true);
+        intent.putExtra("url", NetworkAPIService.BLANKET);
+        intent.putExtra("history_url", NetworkAPIService.BLANKET_HISTORY);
         startActivity(intent);
     }
 
@@ -82,5 +84,14 @@ public class MainActivity extends AppCompatActivity {
         finish();
         editor.putString(Prefs.TOKEN, "");
         editor.commit();
+    }
+
+    public void showSomeThing(View view) {
+        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+        intent.putExtra("title", getString(R.string.something));
+        intent.putExtra("has_history", true);
+        intent.putExtra("url", NetworkAPIService.SOME_THING);
+        intent.putExtra("history_url", NetworkAPIService.SOME_THING_HISTORY);
+        startActivity(intent);
     }
 }
