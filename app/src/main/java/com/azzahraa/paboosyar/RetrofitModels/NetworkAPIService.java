@@ -16,8 +16,8 @@ public interface NetworkAPIService {
     String ENTITY = "account/details/";
     String BLANKET = "blanket/";
     String BLANKET_HISTORY = "blanket/history/";
-    String BOOK = "something/";
-    String BOOK_HISTORY = "something/history/";
+    String SOME_THING = "something/";
+    String SOME_THING_HISTORY = "something/history/";
 
 
     @POST("auth/token/login")

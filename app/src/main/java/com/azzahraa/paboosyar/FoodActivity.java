@@ -19,7 +19,7 @@ public class FoodActivity extends AppCompatActivity {
 
     public void showMenFood(View view) {
         Intent intent = new Intent(FoodActivity.this, ScannerActivity.class);
-        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.sadat));
+        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.men));
         intent.putExtra("has_history", true);
         intent.putExtra("url", NetworkAPIService.MEN_FOOD);
         intent.putExtra("history_url", NetworkAPIService.MEN_FOOD_HISTORY);
@@ -28,7 +28,7 @@ public class FoodActivity extends AppCompatActivity {
 
     public void showGraduatedFood(View view) {
         Intent intent = new Intent(FoodActivity.this, ScannerActivity.class);
-        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.seyed_o_shohada));
+        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.graduated));
         intent.putExtra("has_history", true);
         intent.putExtra("url", NetworkAPIService.GRADUATED_FOOD);
         intent.putExtra("history_url", NetworkAPIService.GRADUATED_FOOD_HISTORY);

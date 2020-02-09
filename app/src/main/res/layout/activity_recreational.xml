@@ -1,87 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".RecreationalActivity"
     android:background="@drawable/menu_background"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".RecreationalActivity">
+    android:paddingRight="@dimen/side_padding"
+    android:paddingLeft="@dimen/side_padding"
+    android:gravity="center">
 
-    <ImageView
-        android:id="@+id/recreational_activity_ordooye_paboos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/paboos98"
-        android:src="@drawable/ordooye_paboos"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
+    <Button
+        android:id="@+id/activity_main_pool_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/side_padding"
-        android:paddingRight="@dimen/side_padding"
-        app:layout_constraintTop_toBottomOf="@id/recreational_activity_ordooye_paboos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp">
-
-        <Button
-            android:id="@+id/activity_recreational_pool_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:onClick="showPool"
-            android:text="@string/blue_waves_pool"
-            android:textSize="@dimen/default_text_size" />
+        android:background="@drawable/button_background"
+        android:text="@string/blue_waves_pool"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showPool"/>
 
 
-        <Button
-            android:id="@+id/activity_recreational_paintball_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/button_background"
-            android:onClick="showPaintball"
-            android:text="@string/paintball"
-            android:textSize="@dimen/default_text_size" />
+    <Button
+        android:id="@+id/activity_main_paintball_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/button_background"
+        android:text="@string/paintball"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showPaintball"/>
 
-        <Button
-            android:id="@+id/activity_recreational_bowling_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/button_background"
-            android:onClick="showBowling"
-            android:text="@string/bowling"
-            android:textSize="@dimen/default_text_size" />
-
-
-        <Button
-            android:id="@+id/activity_recreational_futsal_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/button_background"
-            android:onClick="showFutsal"
-            android:text="@string/futsal"
-            android:textSize="@dimen/default_text_size" />
-
-        <Button
-            android:id="@+id/activity_recreational_return_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/logout_background_button"
-            android:onClick="back"
-            android:text="@string/back"
-            android:textColor="@color/black"
-            android:textSize="@dimen/default_text_size" />
+    <Button
+        android:id="@+id/activity_main_bowling_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/button_background"
+        android:text="@string/bowling"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showBowling"/>
 
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/activity_main_futsal_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/button_background"
+        android:text="@string/futsal"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showFutsal" />
+
+    <Button
+        android:id="@+id/activity_food_return_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/logout_background_button"
+        android:text="@string/back"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="back"
+        android:textColor="@color/black"/>
+
+
+
+</LinearLayout>

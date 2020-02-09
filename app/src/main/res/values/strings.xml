@@ -30,13 +30,13 @@
     <string name="rest_home_view_janbaz">بازدید آسایشگاه جانبازان امام خمنینی</string>
     <string name="rest_home_malool_view">بازدید از آسایشگاه معلولین فیاض‌بخش</string>
     <string name="sample">نمونه</string>
-    <string name="sadat">حسینیه سادات رضوی</string>
+    <string name="men">برادران</string>
     <string name="women">خواهران</string>
-    <string name="seyed_o_shohada">حسینیه سیدالشهدا</string>
+    <string name="graduated">فارغ‌التحصیلان</string>
     <string name="logout">خروج</string>
-    <string name="refreshing">در حال بروزرسانی…</string>
+    <string name="refreshing">در حال بروزرسانی...</string>
     <string name="back">بازگشت</string>
-    <string name="wrong_pass">لطفا رمزعبور و نام‌کاربری را به درستی وارد نمایید.</string>
+    <string name="incorrect_pass">لطفا رمزعبور و نام‌کاربری را به درستی وارد نمایید.</string>
     <string name="no_internet_connection">شما به شبکه اینترنت متصل نیستید.</string>
     <string name="please_connect_internet">برای استفاده از این برنامه نیاز به اتصال به شبکه اینترنت را دارید. لطفا در تنظیمات به اینترنت متصل شوید.</string>
     <string name="internet_connection_error">خطا در اتصال</string>
@@ -51,10 +51,8 @@
     <string name="ok">باشه</string>
     <string name="requests">درخواست‌ها</string>
     <string name="azzahraa_logo">لوگوی هیئت الزهرا</string>
-    <string name="just_admin_entrance">لطفا با حساب ادمین وارد شوید!\n (برای دریافت حساب ادمین به مسئول ثبت نام مراجعه کنید.)</string>
-    <string name="book">بن کتاب</string>
-    <string name="error">خطا</string>
-    <string name="amade_am">علیک سلام</string>
+    <string name="just_admin_entrance">لطفا با حساب ادمین وارد شوید!</string>
+    <string name="something">یه چیزی</string>
 
     <string-array name="actions">
         <item>غذا</item>

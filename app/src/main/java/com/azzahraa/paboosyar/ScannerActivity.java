@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +39,6 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.kinda.alert.KAlertDialog;
 
 import java.io.IOException;
-import java.util.concurrent.locks.Lock;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,8 +58,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     MediaPlayer acceptSound;
     MediaPlayer rejectSound;
     MediaPlayer clickSound;
-
-    private Object lock = new Object();
 
     boolean hasHistory;
 
@@ -89,6 +85,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         setContentView(R.layout.activity_scanner);
 
 
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA}, 1);
+        }
 
         acceptSound = MediaPlayer.create(this, R.raw.accept);
         rejectSound = MediaPlayer.create(this, R.raw.wrong_answer);
@@ -104,8 +104,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         setTitle(getIntent().getExtras().getString("title"));
 
 
+
         url = getIntent().getExtras().getString("url");
         historyUrl = getIntent().getExtras().getString("history_url");
+
 
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
@@ -140,15 +142,15 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
-                if (toast != null)
+                if(toast != null)
                     toast.cancel();
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                if (qrCodes.size() != 0) {
-                    if (!isInSquare(qrCodes.valueAt(0).cornerPoints))
+                if(qrCodes.size() != 0) {
+                    if (! isInSquare(qrCodes.valueAt(0).cornerPoints))
                         return;
                     mCameraPriview.post(() -> {
                         try {
-                            if (token.equals("")) {
+                            if(token.equals("")) {
                                 Intent intent = new Intent(ScannerActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -160,18 +162,18 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                             responseCall.enqueue(new Callback<Response>() {
                                 @Override
                                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                                    if (response.isSuccessful()) {
+                                    if(response.isSuccessful()) {
                                         boolean ok = response.body().isOk();
                                         resp = response.body();
-                                        Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                                        Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                         FragmentManager fm = getSupportFragmentManager();
                                         ResultFragment fragment = new ResultFragment();
                                         FragmentTransaction ft = fm.beginTransaction();
                                         ft.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, R.anim.slide_up, R.anim.slide_down);
                                         ft.addToBackStack(null);
-                                        ft.replace(R.id.main_layout, fragment).commit();
+                                        ft.replace(R.id.main_layout,fragment).commit();
                                         fragment.setType(ok);
-                                        if (ok) {
+                                        if(ok) {
                                             acceptSound.start();
                                             vibrator.vibrate(200);
                                         } else {
@@ -200,11 +202,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
             }
         });
 
-
     }
 
     private boolean isInSquare(Point[] cornerPoints) {
-        for (Point p : cornerPoints) {
+        for (Point p: cornerPoints) {
             if (p.x < 0.23f * mCameraPriview.getWidth() ||
                     p.y < 0.35f * mCameraPriview.getHeight() ||
                     p.x > 0.4f * mCameraPriview.getWidth() + 400 ||
@@ -253,10 +254,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     private String decryptNationalCode(String displayValue) throws InvalidQRCodeException {
         StringBuilder result = new StringBuilder();
-        if (!displayValue.trim().matches("\\d{21}")) {
+        if (! displayValue.trim().matches("\\d{21}")) {
             throw new InvalidQRCodeException();
         }
-        for (int i = 0; i < 10; i++) {
+        for(int i = 0; i < 10  ; i++) {
             int tmp = displayValue.charAt(2 * i + 1) - 48;
             result.append(9 - tmp);
         }
@@ -299,13 +300,13 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     private class InvalidQRCodeException extends Exception {
     }
 
-    private String decryptPhoneNumber(String displayValue) throws InvalidQRCodeException {
+    private String decryptPhoneNumber(String displayValue) throws InvalidQRCodeException{
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < displayValue.length() / 2; i++) {
+        for(int i = 0; i < displayValue.length() / 2 ; i++) {
             int tmp = displayValue.charAt(2 * i) - 48;
             result.insert(0, (9 - tmp));
         }
-        if (result.length() != 11) {
+        if(result.length() != 11) {
             throw new InvalidQRCodeException();
         }
         return result.toString();
