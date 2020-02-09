@@ -85,10 +85,6 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         setContentView(R.layout.activity_scanner);
 
 
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.CAMERA}, 1);
-        }
 
         acceptSound = MediaPlayer.create(this, R.raw.accept);
         rejectSound = MediaPlayer.create(this, R.raw.wrong_answer);
