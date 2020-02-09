@@ -9,15 +9,15 @@ import retrofit2.http.Url;
 
 public interface NetworkAPIService {
 
-    String MEN_FOOD = "dining/program/22/receipt/";
-    String GRADUATED_FOOD = "dining/program/23/receipt/";
-    String MEN_FOOD_HISTORY = "dining/program/22/";
-    String GRADUATED_FOOD_HISTORY = "dining/program/23/";
+    String SADAT_FOOD = "dining/program/22/receipt/";
+    String SHOHADA_FOOD = "dining/program/23/receipt/";
+    String SADAT_FOOD_HISTORY = "dining/program/22/";
+    String SHOHADA_FOOD_HISTORY = "dining/program/23/";
     String ENTITY = "account/details/";
     String BLANKET = "blanket/";
     String BLANKET_HISTORY = "blanket/history/";
-    String SOME_THING = "something/";
-    String SOME_THING_HISTORY = "something/history/";
+    String BOOK = "book/";
+    String BOOK_HISTORY = "book/history/";
 
 
     @POST("auth/token/login")

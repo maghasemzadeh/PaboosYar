@@ -95,12 +95,12 @@ public class MainActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    public void showSomeThing(View view) {
+    public void showBook(View view) {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
-        intent.putExtra("title", getString(R.string.something));
+        intent.putExtra("title", getString(R.string.book));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", NetworkAPIService.SOME_THING);
-        intent.putExtra("history_url", NetworkAPIService.SOME_THING_HISTORY);
+        intent.putExtra("url", NetworkAPIService.BOOK);
+        intent.putExtra("history_url", NetworkAPIService.BOOK_HISTORY);
         startActivity(intent);
     }
 }

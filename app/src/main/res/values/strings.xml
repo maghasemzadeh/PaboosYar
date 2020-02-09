@@ -30,11 +30,10 @@
     <string name="rest_home_view_janbaz">بازدید آسایشگاه جانبازان امام خمنینی</string>
     <string name="rest_home_malool_view">بازدید از آسایشگاه معلولین فیاض‌بخش</string>
     <string name="sample">نمونه</string>
-    <string name="men">برادران</string>
-    <string name="women">خواهران</string>
-    <string name="graduated">فارغ‌التحصیلان</string>
+    <string name="sadat">حسینیه سادات رضوی</string>
+    <string name="shohada">حسینیه سیدالشهدا</string>
     <string name="logout">خروج</string>
-    <string name="refreshing">در حال بروزرسانی...</string>
+    <string name="refreshing">در حال بروزرسانی…</string>
     <string name="back">بازگشت</string>
     <string name="incorrect_pass">لطفا رمزعبور و نام‌کاربری را به درستی وارد نمایید.</string>
     <string name="no_internet_connection">شما به شبکه اینترنت متصل نیستید.</string>
@@ -52,7 +51,7 @@
     <string name="requests">درخواست‌ها</string>
     <string name="azzahraa_logo">لوگوی هیئت الزهرا</string>
     <string name="just_admin_entrance">لطفا با حساب ادمین وارد شوید!\n(برای پیدا دریافت حساب ادمین به مسئول ثبت نام مرجع کنید.)</string>
-    <string name="something">یه چیزی</string>
+    <string name="book">بن کتاب</string>
 
     <string-array name="actions">
         <item>غذا</item>

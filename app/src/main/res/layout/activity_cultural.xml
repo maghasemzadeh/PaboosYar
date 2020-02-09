@@ -11,7 +11,7 @@
     android:gravity="center">
 
     <Button
-        android:id="@+id/activity_main_pool_button"
+        android:id="@+id/activity_food_sadat_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
@@ -21,7 +21,7 @@
 
 
     <Button
-        android:id="@+id/activity_main_paintball_button"
+        android:id="@+id/activity_cultural_janbaz_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
@@ -31,7 +31,7 @@
         android:onClick="showRestHomeJanbazView"/>
 
     <Button
-        android:id="@+id/activity_main_bowling_button"
+        android:id="@+id/activity_food_shohada_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"

@@ -44,13 +44,13 @@
 
 
     <Button
-        android:id="@+id/activity_main_some_button"
+        android:id="@+id/activity_main_book_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/top_margin"
         android:background="@drawable/button_background"
-        android:onClick="showSomeThing"
-        android:text="@string/something"
+        android:onClick="showBook"
+        android:text="@string/book"
         android:textSize="@dimen/default_text_size" />
 
     <Button

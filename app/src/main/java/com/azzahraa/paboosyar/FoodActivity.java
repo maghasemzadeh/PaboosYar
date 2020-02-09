@@ -17,21 +17,21 @@ public class FoodActivity extends AppCompatActivity {
     }
 
 
-    public void showMenFood(View view) {
+    public void showSadatFood(View view) {
         Intent intent = new Intent(FoodActivity.this, ScannerActivity.class);
-        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.men));
+        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.sadat));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", NetworkAPIService.MEN_FOOD);
-        intent.putExtra("history_url", NetworkAPIService.MEN_FOOD_HISTORY);
+        intent.putExtra("url", NetworkAPIService.SADAT_FOOD);
+        intent.putExtra("history_url", NetworkAPIService.SADAT_FOOD_HISTORY);
         startActivity(intent);
     }
 
-    public void showGraduatedFood(View view) {
+    public void showShohadaFood(View view) {
         Intent intent = new Intent(FoodActivity.this, ScannerActivity.class);
-        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.graduated));
+        intent.putExtra("title", getString(R.string.food) + "ی " + getString(R.string.shohada));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", NetworkAPIService.GRADUATED_FOOD);
-        intent.putExtra("history_url", NetworkAPIService.GRADUATED_FOOD_HISTORY);
+        intent.putExtra("url", NetworkAPIService.SHOHADA_FOOD);
+        intent.putExtra("history_url", NetworkAPIService.SHOHADA_FOOD_HISTORY);
         startActivity(intent);
     }
 
