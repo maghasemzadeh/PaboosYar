@@ -44,7 +44,7 @@ public class CameraViewer extends View {
 
         mPath.reset();
 
-        mPath.addRect(0.23f * getWidth() , 0.35f * getHeight(), 0.4f * getWidth() + 400, 0.44f * getHeight() + 400, Path.Direction.CW);
+        mPath.addRect(0.23f * getWidth() , 0.35f * getHeight(), 0.77f * getWidth() , 0.65f * getHeight(), Path.Direction.CW);
         mPath.setFillType(Path.FillType.INVERSE_EVEN_ODD);
 
         canvas.drawRect( 50, 10, 50, 10, mTransparentPaint);
