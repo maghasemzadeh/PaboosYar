@@ -9,10 +9,10 @@ import retrofit2.http.Url;
 
 public interface NetworkAPIService {
 
-    String SADAT_FOOD = "dining/program/22/receipt/";
-    String SHOHADA_FOOD = "dining/program/23/receipt/";
-    String SADAT_FOOD_HISTORY = "dining/program/22/";
-    String SHOHADA_FOOD_HISTORY = "dining/program/23/";
+    String SADAT_FOOD = "dining/receipt/sadat/";
+    String SHOHADA_FOOD = "dining/receipt/shohada/";
+    String SADAT_FOOD_HISTORY = "dining/history/sadat/";
+    String SHOHADA_FOOD_HISTORY = "dining/history/shohada/";
     String ENTITY = "account/details/";
     String BLANKET = "blanket/";
     String BLANKET_HISTORY = "blanket/history/";
