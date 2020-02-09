@@ -1,11 +1,13 @@
 package com.azzahraa.paboosyar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -63,13 +65,11 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        mPasswordEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    signIn(null);
-                }
-                return false;
+        mPasswordEt.setOnEditorActionListener((v, actionId, event) -> {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                signIn(null);
             }
+            return false;
         });
 
     }
@@ -94,13 +94,19 @@ public class LoginActivity extends AppCompatActivity {
                     String token = "Token " + response.body().getToken();
                     editor.putString(Prefs.TOKEN, token);
                     editor.commit();
-                    AtomicBoolean flag = new AtomicBoolean(true);
                     Call<com.azzahraa.paboosyar.RetrofitModels.Response> validateCall = retrofitHandler.getResponse(new Username("0023457708"), token, NetworkAPIService.ENTITY);
                     validateCall.enqueue(new Callback<com.azzahraa.paboosyar.RetrofitModels.Response>() {
                         @Override
                         public void onResponse(Call<com.azzahraa.paboosyar.RetrofitModels.Response> call, Response<com.azzahraa.paboosyar.RetrofitModels.Response> response) {
-                            if (!response.isSuccessful())
-                                flag.set(false);
+                            if (!response.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, getString(R.string.just_admin_entrance), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(LoginActivity.this, getString(R.string.welcome_khadem), Toast.LENGTH_LONG).show();
+                            finish();
                         }
 
                         @Override
@@ -109,24 +115,14 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
 
-                    if (!flag.get()) {
-                        Toast.makeText(LoginActivity.this, getString(R.string.just_admin_entrance), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    Toast.makeText(LoginActivity.this, getString(R.string.welcome_khadem), Toast.LENGTH_LONG).show();
-                    finish();
                 } else {
-//                    Toast.makeText(LoginActivity.this, getString(R.string.incorrect_pass), Toast.LENGTH_LONG).show();
-                    Toast.makeText(LoginActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.incorrect_pass), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Authentication> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, getString(R.string.connection_error) , Toast.LENGTH_LONG).show();
+                createNetErrorDialog();
             }
         });
 
@@ -140,4 +136,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    protected void createNetErrorDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.please_connect_internet))
+                .setTitle(getString(R.string.internet_connection_error))
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.settings),
+                        (dialog, id) -> {
+                            Intent i = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+                            startActivity(i);
+                        }
+                )
+                .setNegativeButton(getString(R.string.dismiss),
+                        (dialog, id) -> {
+                            LoginActivity.this.finish();
+                        }
+                );
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 }

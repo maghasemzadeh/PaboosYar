@@ -51,7 +51,7 @@
     <string name="ok">باشه</string>
     <string name="requests">درخواست‌ها</string>
     <string name="azzahraa_logo">لوگوی هیئت الزهرا</string>
-    <string name="just_admin_entrance">لطفا با حساب ادمین وارد شوید!</string>
+    <string name="just_admin_entrance">لطفا با حساب ادمین وارد شوید!\n(برای پیدا دریافت حساب ادمین به مسئول ثبت نام مرجع کنید.)</string>
     <string name="something">یه چیزی</string>
 
     <string-array name="actions">
