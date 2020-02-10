@@ -11,8 +11,8 @@ public interface NetworkAPIService {
 
     String SADAT_FOOD = "dining/receipt/sadat/";
     String SHOHADA_FOOD = "dining/receipt/shohada/";
-    String SADAT_FOOD_HISTORY = "dining/dining/receipt/sadat/history/";
-    String SHOHADA_FOOD_HISTORY = "dining/receipt/shohada/history/";
+    String SADAT_FOOD_HISTORY = "dining/history/sadat/";
+    String SHOHADA_FOOD_HISTORY = "dining/history/shohada/";
     String ENTITY = "account/details/";
     String BLANKET = "blanket/";
     String BLANKET_HISTORY = "blanket/history/";
