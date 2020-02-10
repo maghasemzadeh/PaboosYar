@@ -6,7 +6,7 @@
     <string name="has_no_food">غذایی توسط مسافر سفارش داده نشده است.</string>
     <string name="rescan">دوباره اسکن کن</string>
 
-
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="invalid_qrcode">بارکد داده شده معتبر نیست</string>
     <string name="welcome_to_shah">آمدم ای شاه، پناهم بده</string>
