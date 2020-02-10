@@ -54,4 +54,11 @@
             android:textSize="20sp"
             android:textColor="@color/black" />
 
+        <Switch
+            android:id="@+id/activity_login_offline_mode_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/offline_mode"
+            android:onClick="doSwitch" />
+        
 </LinearLayout>

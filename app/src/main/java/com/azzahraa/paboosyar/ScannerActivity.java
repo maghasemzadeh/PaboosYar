@@ -70,12 +70,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     SharedPreferences preferences;
 
+    String base;
     String token;
 
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://account.azzahraa.ir/api/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+    Retrofit retrofit;
 
     NetworkAPIService retrofitHandler = retrofit.create(NetworkAPIService.class);
 
@@ -105,6 +103,12 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         historyUrl = getIntent().getExtras().getString("history_url");
 
 
+        base = preferences.getString("base", NetworkAPIService.ONLINE);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(base)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
 

@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText mPasswordEt;
     ImageView azzahraaLogo;
 
+    String base = NetworkAPIService.ONLINE;
 
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
@@ -79,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         String password = String.valueOf(mPasswordEt.getText());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://account.azzahraa.ir/api/")
+                .baseUrl(base)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -155,4 +157,14 @@ public class LoginActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+    public void doSwitch(View view) {
+        if (((Switch)view).isChecked()) {
+            base = NetworkAPIService.LOCAL;
+        } else {
+            base = NetworkAPIService.ONLINE;
+        }
+        editor.putString("base", base);
+    }
+
 }

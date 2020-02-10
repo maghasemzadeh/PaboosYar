@@ -6,7 +6,7 @@
     <string name="has_no_food">غذایی توسط مسافر سفارش داده نشده است.</string>
     <string name="rescan">دوباره اسکن کن</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="invalid_qrcode">بارکد داده شده معتبر نیست</string>
     <string name="welcome_to_shah">آمدم ای شاه، پناهم بده</string>
@@ -52,6 +52,8 @@
     <string name="azzahraa_logo">لوگوی هیئت الزهرا</string>
     <string name="just_admin_entrance">لطفا با حساب ادمین وارد شوید!\n(برای پیدا دریافت حساب ادمین به مسئول ثبت نام مرجع کنید.)</string>
     <string name="book">بن کتاب</string>
+    <string name="aleyk_salam">علیک سلام</string>
+    <string name="offline_mode">حالت آفلاین</string>
 
     <string-array name="actions">
         <item>غذا</item>

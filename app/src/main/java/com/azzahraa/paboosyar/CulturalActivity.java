@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.azzahraa.paboosyar.RetrofitModels.NetworkAPIService;
+
 public class CulturalActivity extends AppCompatActivity {
 
     @Override
@@ -18,8 +20,8 @@ public class CulturalActivity extends AppCompatActivity {
         Intent intent = new Intent(CulturalActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.martyr_view));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", "program/26/sub_program/77/");
-        intent.putExtra("history_url", "program/26/sub_program/77/");
+        intent.putExtra("url", NetworkAPIService.SHOHADA);
+        intent.putExtra("history_url", NetworkAPIService.SHOHADA_HISTORY);
         startActivity(intent);
     }
 
@@ -27,8 +29,8 @@ public class CulturalActivity extends AppCompatActivity {
         Intent intent = new Intent(CulturalActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.rest_home_view_janbaz));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", "program/26/sub_program/79/");
-        intent.putExtra("history_url", "program/26/sub_program/79/");
+        intent.putExtra("url", NetworkAPIService.JANBAZ);
+        intent.putExtra("history_url", NetworkAPIService.JANBAZ_HISTORY);
         startActivity(intent);
     }
 
@@ -36,8 +38,8 @@ public class CulturalActivity extends AppCompatActivity {
         Intent intent = new Intent(CulturalActivity.this, ScannerActivity.class);
         intent.putExtra("title", getString(R.string.rest_home_malool_view));
         intent.putExtra("has_history", true);
-        intent.putExtra("url", "program/26/sub_program/78/");
-        intent.putExtra("history_url", "program/26/sub_program/78/");
+        intent.putExtra("url", NetworkAPIService.MALOOL);
+        intent.putExtra("history_url", NetworkAPIService.MALOOL_HISTORY);
         startActivity(intent);
     }
 

@@ -18,7 +18,24 @@ public interface NetworkAPIService {
     String BLANKET_HISTORY = "blanket/history/";
     String BOOK = "book/";
     String BOOK_HISTORY = "book/history/";
+    String SHOHADA = "cultural/shohada/";
+    String SHOHADA_HISTORY = "cultural/shohada/history/";
+    String JANBAZ = "cultural/janbaz/";
+    String JANBAZ_HISTORY = "cultural/janbaz/history/";
+    String MALOOL = "cultural/malool/";
+    String MALOOL_HISTORY = "cultural/malool/history/";
+    String POOL = "entertainment/pool/";
+    String POOL_HISTORY = "entertainment/pool/history/";
+    String PAINTBALL = "entertainment/paintball/";
+    String PAINTBALL_HISTORY = "entertainment/paintball/history/";
+    String BOWLING = "entertainment/bowling/";
+    String BOWLING_HISTORY = "entertainment/bowling/history/";
+    String FOOTSAL = "entertainment/footsal/";
+    String FOOTSAL_HISTORY = "entertainment/footsal/history/";
 
+
+    String ONLINE = "http://account.azzahraa.ir/api/";
+    String LOCAL = "http://localhost:8080";
 
     @POST("auth/token/login")
     Call<Authentication> getToken(@Body User user);
