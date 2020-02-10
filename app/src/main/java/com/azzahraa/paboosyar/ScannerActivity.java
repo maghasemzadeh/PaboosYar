@@ -75,7 +75,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     Retrofit retrofit;
 
-    NetworkAPIService retrofitHandler = retrofit.create(NetworkAPIService.class);
+    NetworkAPIService retrofitHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +109,8 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                 .baseUrl(base)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        retrofitHandler = retrofit.create(NetworkAPIService.class);
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
 
