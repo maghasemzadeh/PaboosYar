@@ -1,62 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".FoodActivity"
-    android:background="@drawable/menu_background">
-    <ImageView
-        android:id="@+id/activity_food_amade_am_img"
-        android:contentDescription="@string/aleyk_salam"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_height="140dp"
-        android:src="@drawable/amade_am"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-    <LinearLayout
+    android:background="@drawable/menu_background"
+    android:paddingRight="@dimen/side_padding"
+    android:paddingLeft="@dimen/side_padding"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/activity_food_sadat_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="@dimen/side_padding"
-        android:paddingLeft="@dimen/side_padding"
-        android:orientation="vertical"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/activity_food_amade_am_img"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="40dp">
-
-        <Button
-            android:id="@+id/activity_food_sadat_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:text="@string/sadat"
-            android:textSize="@dimen/default_text_size"
-            android:onClick="showSadatFood"/>
+        android:background="@drawable/button_background"
+        android:text="@string/sadat"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showSadatFood"/>
 
 
 
-        <Button
-            android:id="@+id/activity_food_shohada_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/button_background"
-            android:text="@string/shohada"
-            android:textSize="@dimen/default_text_size"
-            android:onClick="showShohadaFood" />
+    <Button
+        android:id="@+id/activity_food_shohada_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/button_background"
+        android:text="@string/shohada"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showShohadaFood" />
 
-        <Button
-            android:id="@+id/activity_food_return_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/logout_background_button"
-            android:text="@string/back"
-            android:textSize="@dimen/default_text_size"
-            android:onClick="back"
-            android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/activity_food_return_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/logout_background_button"
+        android:text="@string/back"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="back"
+        android:textColor="@color/black"/>
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</LinearLayout>

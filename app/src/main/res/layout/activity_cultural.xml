@@ -1,76 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".CulturalActivity"
     android:background="@drawable/menu_background"
-    tools:context=".CulturalActivity">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/side_padding"
+    android:paddingRight="@dimen/side_padding"
+    android:gravity="center">
 
-    <ImageView
-        android:id="@+id/activity_cultural_amade_am_img"
-        android:layout_width="wrap_content"
-        android:layout_height="140dp"
-        android:layout_marginTop="30dp"
-        android:contentDescription="@string/aleyk_salam"
-        android:src="@drawable/amade_am"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
+    <Button
+        android:id="@+id/activity_food_sadat_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/side_padding"
-        android:paddingRight="@dimen/side_padding"
-        app:layout_constraintTop_toBottomOf="@id/activity_cultural_amade_am_img"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="30dp">
-
-        <Button
-            android:id="@+id/activity_food_sadat_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:onClick="showMartyrView"
-            android:text="@string/martyr_view"
-            android:textSize="@dimen/default_text_size" />
+        android:background="@drawable/button_background"
+        android:text="@string/martyr_view"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="showMartyrView"/>
 
 
-        <Button
-            android:id="@+id/activity_cultural_janbaz_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/button_background"
-            android:onClick="showRestHomeJanbazView"
-            android:text="@string/rest_home_view_janbaz"
-            android:textSize="17sp" />
+    <Button
+        android:id="@+id/activity_cultural_janbaz_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/button_background"
+        android:text="@string/rest_home_view_janbaz"
+        android:textSize="17sp"
+        android:onClick="showRestHomeJanbazView"/>
 
-        <Button
-            android:id="@+id/activity_food_shohada_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/button_background"
-            android:onClick="showRestHomeMaloolView"
-            android:text="@string/rest_home_malool_view"
-            android:textSize="17sp" />
-
-
-        <Button
-            android:id="@+id/activity_food_return_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/top_margin"
-            android:background="@drawable/logout_background_button"
-            android:onClick="back"
-            android:text="@string/back"
-            android:textColor="@color/black"
-            android:textSize="@dimen/default_text_size" />
+    <Button
+        android:id="@+id/activity_food_shohada_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/button_background"
+        android:text="@string/rest_home_malool_view"
+        android:textSize="17sp"
+        android:onClick="showRestHomeMaloolView"/>
 
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/activity_food_return_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_margin"
+        android:background="@drawable/logout_background_button"
+        android:text="@string/back"
+        android:textSize="@dimen/default_text_size"
+        android:onClick="back"
+        android:textColor="@color/black"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>

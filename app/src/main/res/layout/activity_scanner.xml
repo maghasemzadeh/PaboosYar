@@ -32,13 +32,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"/>
 
-    
-    <ImageView
-        android:src="@drawable/ordooye_paboos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:contentDescription="@string/paboos98" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
