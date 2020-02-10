@@ -48,6 +48,4 @@ public interface NetworkAPIService {
     @GET
     Call<Response> getHistory(@Header("Authorization") String authorization,
                               @Url String url);
-
-
 }

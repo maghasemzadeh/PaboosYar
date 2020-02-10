@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.activity_login_sign_in_button);
         mUsernameEt = findViewById(R.id.activity_login_username_et);
         mPasswordEt = findViewById(R.id.activity_login_password_et);
-        azzahraaLogo = findViewById(R.id.azzahraa_logo);
 
         preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
         editor = preferences.edit();

@@ -8,46 +8,61 @@
     tools:context=".MainActivity">
 
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/activity_main_logo_img"
-        android:scrollbars="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <GridLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/side_padding"
-            android:paddingRight="@dimen/side_padding">
+            android:columnCount="2"
+            android:fadeScrollbars="false"
+            android:rowCount="3"
+            android:scrollbarStyle="insideInset">
 
 
             <Button
                 android:id="@+id/activity_main_food_button"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/second_default_width"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
                 android:onClick="showFood"
                 android:text="@string/food"
                 android:textSize="@dimen/default_text_size"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="20dp"/>
+
+
+
+            <Button
+                android:id="@+id/activity_main_entity_button"
+                android:layout_width="@dimen/second_default_width"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:onClick="showEntity"
+                android:text="@string/entity"
+                android:textSize="@dimen/default_text_size"/>
 
             <Button
                 android:id="@+id/activity_main_cultural_button"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/second_default_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/top_margin"
                 android:background="@drawable/button_background"
                 android:onClick="showCultural"
                 android:text="@string/cultural"
-                android:textSize="@dimen/default_text_size" />
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginEnd="20dp"/>
 
             <Button
                 android:id="@+id/activity_main_recreational_button"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/second_default_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/top_margin"
                 android:background="@drawable/button_background"
@@ -58,60 +73,49 @@
 
             <Button
                 android:id="@+id/activity_main_book_button"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/second_default_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/top_margin"
                 android:background="@drawable/button_background"
                 android:onClick="showBook"
                 android:text="@string/book"
-                android:textSize="@dimen/default_text_size" />
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginEnd="20dp" />
 
             <Button
                 android:id="@+id/activity_main_blanket_button"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/second_default_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/top_margin"
                 android:background="@drawable/button_background"
                 android:onClick="showBlanket"
                 android:text="@string/blanket"
-                android:textSize="@dimen/default_text_size" />
+                android:textSize="@dimen/default_text_size"/>
 
 
-            <Button
-                android:id="@+id/activity_main_entity_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/top_margin"
-                android:background="@drawable/button_background"
-                android:onClick="showEntity"
-                android:text="@string/entity"
-                android:textSize="@dimen/default_text_size" />
-
-
-            <Button
-                android:id="@+id/activity_main_logout_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/top_margin"
-                android:background="@drawable/logout_background_button"
-                android:onClick="logout"
-                android:text="@string/logout"
-                android:textSize="@dimen/default_text_size"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
-    </ScrollView>
+        </GridLayout>
+        <Button
+            android:id="@+id/activity_main_logout_button"
+            android:layout_width="@dimen/default_width"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/top_margin"
+            android:background="@drawable/logout_background_button"
+            android:onClick="logout"
+            android:text="@string/logout"
+            android:textColor="@color/black"
+            android:textSize="@dimen/default_text_size" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/activity_main_logo_img"
         android:layout_width="wrap_content"
         android:layout_height="140dp"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/aleyk_salam"
         android:src="@drawable/paboos_logo"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="10dp"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
