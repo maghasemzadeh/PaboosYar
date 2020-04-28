@@ -7,8 +7,13 @@ Here are some pictures of the UI:
 
 
 <div>
-  <img src="Images/splash.jpg" width="300" />
-  <img src="Images/main.jpg" width="300" />
-  <img src="Images/museum.jpg" width="300" />
-  <img src="Images/scanner.jpg" width="300" />
+  <div>
+    <img src="Images/splash.jpg" width="300" />
+    <img src="Images/main.jpg" width="300" />
+  </div>
+
+  <div>
+    <img src="Images/museum.jpg" width="300" />
+    <img src="Images/scanner.jpg" width="300" />
+  </div>
 </div>
