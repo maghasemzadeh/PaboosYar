@@ -95,6 +95,11 @@ public class LoginActivity extends AppCompatActivity {
                     String token = "Token " + response.body().getToken();
                     editor.putString(Prefs.TOKEN, token);
                     editor.commit();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(LoginActivity.this, getString(R.string.welcome_khadem), Toast.LENGTH_LONG).show();
+                    finish();
+
                 } else {
                     Toast.makeText(LoginActivity.this, getString(R.string.incorrect_pass), Toast.LENGTH_LONG).show();
                 }
