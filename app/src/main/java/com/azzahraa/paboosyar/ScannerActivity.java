@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -72,16 +74,17 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     String base;
     String token;
+    int programID;
 
     Retrofit retrofit;
 
     NetworkAPIService retrofitHandler;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-
 
 
         acceptSound = MediaPlayer.create(this, R.raw.accept);
@@ -94,9 +97,9 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
         preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
         token = preferences.getString(Prefs.TOKEN, "");
+        programID = preferences.getInt(Prefs.PROGRAM_ID, 49);
 
         setTitle(getIntent().getExtras().getString("title"));
-
 
 
         url = getIntent().getExtras().getString("url");
@@ -144,15 +147,15 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
-                if(toast != null)
+                if (toast != null)
                     toast.cancel();
                 final SparseArray<Barcode> qrCodes = detections.getDetectedItems();
-                if(qrCodes.size() != 0) {
-                    if (! isInSquare(qrCodes.valueAt(0).cornerPoints))
+                if (qrCodes.size() != 0) {
+                    if (!isInSquare(qrCodes.valueAt(0).cornerPoints))
                         return;
                     mCameraPriview.post(() -> {
                         try {
-                            if(token.equals("")) {
+                            if (token.equals("")) {
                                 Intent intent = new Intent(ScannerActivity.this, LoginActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -160,22 +163,23 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                             }
                             String nationalCode = decryptNationalCode(qrCodes.valueAt(0).displayValue);
                             cameraSource.stop();
-                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode), token, url);
+                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode), token, programID, url);
                             responseCall.enqueue(new Callback<Response>() {
                                 @Override
                                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
-                                    if(response.isSuccessful()) {
+                                    Log.d("TAG", "onResponse: " + response);
+                                    if (response.isSuccessful()) {
                                         boolean ok = response.body().isOk();
                                         resp = response.body();
-                                        Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                                        Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                                         FragmentManager fm = getSupportFragmentManager();
                                         ResultFragment fragment = new ResultFragment();
                                         FragmentTransaction ft = fm.beginTransaction();
                                         ft.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, R.anim.slide_up, R.anim.slide_down);
                                         ft.addToBackStack(null);
-                                        ft.replace(R.id.main_layout,fragment).commit();
+                                        ft.replace(R.id.main_layout, fragment).commit();
                                         fragment.setType(ok);
-                                        if(ok) {
+                                        if (ok) {
                                             acceptSound.start();
                                             vibrator.vibrate(200);
                                         } else {
@@ -207,7 +211,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     }
 
     private boolean isInSquare(Point[] cornerPoints) {
-        for (Point p: cornerPoints) {
+        for (Point p : cornerPoints) {
             if (p.x < 0.23f * mCameraPriview.getWidth() ||
                     p.y < 0.35f * mCameraPriview.getHeight() ||
                     p.x > 0.4f * mCameraPriview.getWidth() + 400 ||
@@ -247,6 +251,10 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
 
     private void initializeCamera(SurfaceHolder holder) {
         try {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA}, 1);
+            }
             cameraSource.start(holder);
         } catch (IOException e) {
             e.printStackTrace();
@@ -267,7 +275,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     }
 
     public void refresh() {
-        Call<Response> call = retrofitHandler.getHistory(token, historyUrl);
+        Call<Response> call = retrofitHandler.getHistory(token, programID, historyUrl);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {

@@ -95,27 +95,6 @@ public class LoginActivity extends AppCompatActivity {
                     String token = "Token " + response.body().getToken();
                     editor.putString(Prefs.TOKEN, token);
                     editor.commit();
-                    Call<com.azzahraa.paboosyar.RetrofitModels.Response> validateCall = retrofitHandler.getResponse(new Username("0023457708"), token, NetworkAPIService.ENTITY);
-                    validateCall.enqueue(new Callback<com.azzahraa.paboosyar.RetrofitModels.Response>() {
-                        @Override
-                        public void onResponse(Call<com.azzahraa.paboosyar.RetrofitModels.Response> call, Response<com.azzahraa.paboosyar.RetrofitModels.Response> response) {
-                            if (!response.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, getString(R.string.just_admin_entrance), Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            Toast.makeText(LoginActivity.this, getString(R.string.welcome_khadem), Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-
-                        @Override
-                        public void onFailure(Call<com.azzahraa.paboosyar.RetrofitModels.Response> call, Throwable t) {
-                            Toast.makeText(LoginActivity.this, getString(R.string.connection_error) , Toast.LENGTH_LONG).show();
-                        }
-                    });
-
                 } else {
                     Toast.makeText(LoginActivity.this, getString(R.string.incorrect_pass), Toast.LENGTH_LONG).show();
                 }

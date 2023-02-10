@@ -21,7 +21,7 @@
     <string name="recreational">تفریحی</string>
     <string name="train">قطار</string>
     <string name="blanket">پتو</string>
-    <string name="entity">تشخیص هویت</string>
+    <string name="entity">بررسی عضویت</string>
     <string name="blue_waves_pool">استخر موج‌های آبی</string>
     <string name="futsal">فوتسال</string>
     <string name="bowling">بولینگ</string>
@@ -35,6 +35,7 @@
     <string name="logout">خروج</string>
     <string name="refreshing">در حال بروزرسانی…</string>
     <string name="back">بازگشت</string>
+    <string name="pack">پک</string>
     <string name="incorrect_pass">لطفا رمزعبور و نام‌کاربری را به درستی وارد نمایید.</string>
     <string name="no_internet_connection">شما به شبکه اینترنت متصل نیستید.</string>
     <string name="please_connect_internet">برای استفاده از این برنامه نیاز به اتصال به شبکه اینترنت را دارید. لطفا در تنظیمات به اینترنت متصل شوید.</string>

@@ -1,5 +1,7 @@
 package com.azzahraa.paboosyar.RetrofitModels;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -9,15 +11,16 @@ import retrofit2.http.Url;
 
 public interface NetworkAPIService {
 
-    String SADAT_FOOD = "dining/receipt/sadat/";
-    String SHOHADA_FOOD = "dining/receipt/shohada/";
-    String SADAT_FOOD_HISTORY = "dining/history/sadat/";
-    String SHOHADA_FOOD_HISTORY = "dining/history/shohada/";
+    String FOOD = "dining/receipt/";
+    String FOOD_HISTORY = "dining/history/";
+    String PACK = "pack/receive_pack/";
+    String PACK_HISTORY = "pack/history/";
     String ENTITY = "account/details/";
     String BLANKET = "blanket/";
     String BLANKET_HISTORY = "blanket/history/";
     String BOOK = "book/";
     String BOOK_HISTORY = "book/history/";
+    String OPEN_PROGRAMS = "program/open/";
     String SHOHADA = "cultural/shohada/";
     String SHOHADA_HISTORY = "cultural/shohada/history/";
     String JANBAZ = "cultural/janbaz/";
@@ -34,8 +37,9 @@ public interface NetworkAPIService {
     String FOOTSAL_HISTORY = "entertainment/footsal/history/";
 
 
-    String ONLINE = "http://account.azzahraa.ir/api/";
-    String LOCAL = "http://localhost:8080";
+//    String ONLINE = "https://account.azzahraa.ir/api/";
+    String ONLINE = "http://172.27.165.16:8000";
+    String LOCAL = "https://localhost:8080";
 
     @POST("auth/token/login")
     Call<Authentication> getToken(@Body User user);
@@ -43,9 +47,11 @@ public interface NetworkAPIService {
     @POST()
     Call<Response> getResponse(@Body Username username,
                                @Header("Authorization") String authorization,
+                               @Header("Program-Id") int programID,
                                @Url String url);
 
     @GET
     Call<Response> getHistory(@Header("Authorization") String authorization,
+                              @Header("Program-Id") int programID,
                               @Url String url);
 }

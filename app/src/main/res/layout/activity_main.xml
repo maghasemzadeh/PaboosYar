@@ -17,6 +17,22 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
 
+        <Spinner
+            android:id="@+id/program_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+
+        <Button
+            android:id="@+id/activity_main_entity_button"
+            android:layout_width="@dimen/default_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:layout_marginTop="@dimen/top_margin"
+            android:onClick="showEntity"
+            android:text="@string/entity"
+            android:textSize="@dimen/default_text_size"/>
+
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,42 +49,12 @@
                 android:background="@drawable/button_background"
                 android:onClick="showFood"
                 android:text="@string/food"
+                android:layout_marginTop="@dimen/top_margin"
                 android:textSize="@dimen/default_text_size"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginEnd="20dp"/>
 
-
-
-            <Button
-                android:id="@+id/activity_main_entity_button"
-                android:layout_width="@dimen/second_default_width"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_background"
-                android:onClick="showEntity"
-                android:text="@string/entity"
-                android:textSize="@dimen/default_text_size"/>
-
-            <Button
-                android:id="@+id/activity_main_cultural_button"
-                android:layout_width="@dimen/second_default_width"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/top_margin"
-                android:background="@drawable/button_background"
-                android:onClick="showCultural"
-                android:text="@string/cultural"
-                android:textSize="@dimen/default_text_size"
-                android:layout_marginEnd="20dp"/>
-
-            <Button
-                android:id="@+id/activity_main_recreational_button"
-                android:layout_width="@dimen/second_default_width"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/top_margin"
-                android:background="@drawable/button_background"
-                android:onClick="showRecreational"
-                android:text="@string/recreational"
-                android:textSize="@dimen/default_text_size" />
 
 
             <Button
@@ -91,6 +77,17 @@
                 android:onClick="showBlanket"
                 android:text="@string/blanket"
                 android:textSize="@dimen/default_text_size"/>
+
+            <Button
+                android:id="@+id/activity_main_pack_button"
+                android:layout_width="@dimen/second_default_width"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/top_margin"
+                android:background="@drawable/button_background"
+                android:onClick="showPack"
+                android:text="@string/pack"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginEnd="20dp" />
 
 
         </GridLayout>
