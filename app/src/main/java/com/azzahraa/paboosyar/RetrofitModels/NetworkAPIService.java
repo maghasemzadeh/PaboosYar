@@ -7,6 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface NetworkAPIService {
@@ -38,7 +39,7 @@ public interface NetworkAPIService {
 
 
 //    String ONLINE = "https://account.azzahraa.ir/api/";
-    String ONLINE = "http://172.27.165.16:8000";
+    String ONLINE = "http://172.27.165.116:8000";
     String LOCAL = "https://localhost:8080";
 
     @POST("auth/token/login")
@@ -47,11 +48,11 @@ public interface NetworkAPIService {
     @POST()
     Call<Response> getResponse(@Body Username username,
                                @Header("Authorization") String authorization,
-                               @Header("Program-Id") int programID,
-                               @Url String url);
+                               @Url String url,
+                               @Query("Program-Id") int programID);
 
     @GET
     Call<Response> getHistory(@Header("Authorization") String authorization,
-                              @Header("Program-Id") int programID,
-                              @Url String url);
+                              @Url String url,
+                              @Query("Program-Id") int programID);
 }

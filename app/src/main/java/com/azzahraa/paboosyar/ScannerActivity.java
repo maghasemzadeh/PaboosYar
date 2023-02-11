@@ -163,7 +163,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                             }
                             String nationalCode = decryptNationalCode(qrCodes.valueAt(0).displayValue);
                             cameraSource.stop();
-                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode), token, programID, url);
+                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode), token, url, programID);
                             responseCall.enqueue(new Callback<Response>() {
                                 @Override
                                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
@@ -275,7 +275,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     }
 
     public void refresh() {
-        Call<Response> call = retrofitHandler.getHistory(token, programID, historyUrl);
+        Call<Response> call = retrofitHandler.getHistory(token, historyUrl, programID);
         call.enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {

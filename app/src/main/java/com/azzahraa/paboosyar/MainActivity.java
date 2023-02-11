@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
                     @Override
                     public void onError(ANError anError) {
-
+                        Log.d("Eeeeeeeeeeeeeee", anError.toString());
                     }
                 });
         return programs;

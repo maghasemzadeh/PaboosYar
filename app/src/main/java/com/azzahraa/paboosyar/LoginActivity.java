@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -122,10 +123,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     protected void createNetErrorDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.AlertDialogCustom));
         builder.setMessage(getString(R.string.please_connect_internet))
                 .setTitle(getString(R.string.internet_connection_error))
-                .setCancelable(false)
+                .setCancelable(true)
                 .setPositiveButton(getString(R.string.settings),
                         (dialog, id) -> {
                             Intent i = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
@@ -134,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                 )
                 .setNegativeButton(getString(R.string.dismiss),
                         (dialog, id) -> {
-                            LoginActivity.this.finish();
+                            dialog.dismiss();
                         }
                 );
         AlertDialog alert = builder.create();
