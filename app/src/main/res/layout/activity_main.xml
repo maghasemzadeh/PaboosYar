@@ -97,6 +97,16 @@
 
         </GridLayout>
         <Button
+            android:id="@+id/activity_main_payment_button"
+            android:layout_width="@dimen/default_width"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/top_margin"
+            android:background="@drawable/button_background"
+            android:onClick="showPayment"
+            android:text="@string/payment"
+            android:textSize="@dimen/default_text_size" />
+
+        <Button
             android:id="@+id/activity_main_logout_button"
             android:layout_width="@dimen/default_width"
             android:layout_height="match_parent"

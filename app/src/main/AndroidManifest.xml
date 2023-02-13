@@ -25,7 +25,7 @@
         <activity android:name="com.azzahraa.paboosyar.FoodActivity"
             android:screenOrientation="portrait"
             android:label="@string/food"/>
-        <activity android:name="com.azzahraa.paboosyar.CulturalActivity"
+        <activity android:name="com.azzahraa.paboosyar.PaymentActivity"
             android:screenOrientation="portrait"
             android:label="@string/cultural"/>
         <activity android:name="com.azzahraa.paboosyar.RecreationalActivity"

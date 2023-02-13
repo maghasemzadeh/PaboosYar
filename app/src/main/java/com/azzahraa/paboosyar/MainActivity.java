@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     Button mEntityBtn;
     Button mPackBtn;
     Button mBookBtn;
+    Button mPaymentBtn;
     Spinner programSelect;
 
     SharedPreferences preferences;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mEntityBtn = findViewById(R.id.activity_main_entity_button);
         mPackBtn = findViewById(R.id.activity_main_pack_button);
         mBookBtn = findViewById(R.id.activity_main_book_button);
+        mPaymentBtn = findViewById(R.id.activity_main_payment_button);
 
 
         preferences = getApplicationContext().getSharedPreferences(Prefs.MAIN_PREF, 0);
@@ -173,6 +175,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra("has_history", true);
         intent.putExtra("url", NetworkAPIService.BOOK);
         intent.putExtra("history_url", NetworkAPIService.BOOK_HISTORY);
+        startActivity(intent);
+    }
+
+    public void showPayment(View view) {
+        Intent intent = new Intent(MainActivity.this, PaymentActivity.class);
         startActivity(intent);
     }
 

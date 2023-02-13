@@ -22,6 +22,7 @@ public interface NetworkAPIService {
     String BOOK = "book/";
     String BOOK_HISTORY = "book/history/";
     String OPEN_PROGRAMS = "program/open/";
+    String PAYMENT = "account/details/";
     String SHOHADA = "cultural/shohada/";
     String SHOHADA_HISTORY = "cultural/shohada/history/";
     String JANBAZ = "cultural/janbaz/";
@@ -38,8 +39,8 @@ public interface NetworkAPIService {
     String FOOTSAL_HISTORY = "entertainment/footsal/history/";
 
 
-//    String ONLINE = "https://account.azzahraa.ir/api/";
-    String ONLINE = "http://172.27.165.116:8000";
+    String ONLINE = "https://account.azzahraa.ir/api/";
+//    String ONLINE = "http://172.27.165.116:8000";
     String LOCAL = "https://localhost:8080";
 
     @POST("auth/token/login")

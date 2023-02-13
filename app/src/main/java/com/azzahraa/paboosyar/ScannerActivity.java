@@ -75,6 +75,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
     String base;
     String token;
     int programID;
+    int amount;
 
     Retrofit retrofit;
 
@@ -100,6 +101,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
         programID = preferences.getInt(Prefs.PROGRAM_ID, 49);
 
         setTitle(getIntent().getExtras().getString("title"));
+        amount = getIntent().getExtras().getInt("amount");
 
 
         url = getIntent().getExtras().getString("url");
@@ -163,7 +165,7 @@ public class ScannerActivity extends AppCompatActivity implements ResultFragment
                             }
                             String nationalCode = decryptNationalCode(qrCodes.valueAt(0).displayValue);
                             cameraSource.stop();
-                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode), token, url, programID);
+                            Call<Response> responseCall = retrofitHandler.getResponse(new Username(nationalCode,amount), token, url, programID);
                             responseCall.enqueue(new Callback<Response>() {
                                 @Override
                                 public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
