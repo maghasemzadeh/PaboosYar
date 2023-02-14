@@ -22,7 +22,7 @@ public interface NetworkAPIService {
     String BOOK = "book/";
     String BOOK_HISTORY = "book/history/";
     String OPEN_PROGRAMS = "program/open/";
-    String PAYMENT = "account/details/";
+    String PAYMENT = "pay/manual_payment/";
     String SHOHADA = "cultural/shohada/";
     String SHOHADA_HISTORY = "cultural/shohada/history/";
     String JANBAZ = "cultural/janbaz/";

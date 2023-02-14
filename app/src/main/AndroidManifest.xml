@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <meta-data
-        android:name="com.google.android.gms.vision.DEPENDENCIES"
-        android:value="barcode" />
 
     <application
         android:hardwareAccelerated="false"
@@ -22,15 +20,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         android:resizeableActivity="true">
-        <activity android:name="com.azzahraa.paboosyar.FoodActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/food"/>
         <activity android:name="com.azzahraa.paboosyar.PaymentActivity"
             android:screenOrientation="portrait"
             android:label="@string/cultural"/>
-        <activity android:name="com.azzahraa.paboosyar.RecreationalActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/recreational"/>
         <activity android:name="com.azzahraa.paboosyar.MainActivity"
             android:screenOrientation="portrait"
             android:label="@string/requests"/>
@@ -39,7 +31,8 @@
             android:theme="@style/AppTheme.Login" />
         <activity android:name="com.azzahraa.paboosyar.WelcomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -49,6 +42,13 @@
             android:label="اسکنر"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait"/>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
     </application>
 
 </manifest>
