@@ -5,34 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <SurfaceView
-        android:id="@+id/activity_scanner_camera_preview"
+    <!-- Replace SurfaceView with FrameLayout for ZXing ScannerView -->
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/scanner_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        app:zxing_scanner_layout="@layout/custom_barcode_scanner"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.azzahraa.paboosyar.CameraViewer
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <!-- Assuming this is a custom view, kept unchanged. Adjust if needed. -->
+<!--    <com.azzahraa.paboosyar.CameraViewer-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
+<!--    &lt;!&ndash; Other UI elements remain unchanged &ndash;&gt;-->
+<!--    <View-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="1dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:background="@color/red_transparent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_chainStyle="packed"/>-->
 
-    <View
-        android:layout_width="200dp"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
-        android:background="@color/red_transparent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
-
-    
     <ImageView
         android:src="@drawable/ordooye_paboos"
         android:layout_width="wrap_content"

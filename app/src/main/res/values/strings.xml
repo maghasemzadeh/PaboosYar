@@ -56,6 +56,8 @@
     <string name="book">بن کتاب</string>
     <string name="aleyk_salam">علیک سلام</string>
     <string name="offline_mode">حالت آفلاین</string>
+    <string name="fetch_info_failure">خطا در دریافت اطلاعات</string>
+    <string name="scan_qr_code">شروع اسکن بارکد</string>
 
     <string-array name="actions">
         <item>غذا</item>
