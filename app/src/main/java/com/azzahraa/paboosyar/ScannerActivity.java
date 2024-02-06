@@ -55,7 +55,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * {@link MainActivity}, or must be moved to {@link CaptureActivity} and the immediate closing of
  * page be removed.
  */
-public class ScannerActivity extends AppCompatActivity {
+public class ScannerActivity extends AppCompatActivity implements ResultFragment.OnFragmentInteractionListener {
     TextView mResultTv;
     Button mEnableBtn;
 
@@ -189,7 +189,7 @@ public class ScannerActivity extends AppCompatActivity {
                         FragmentTransaction ft = fm.beginTransaction();
                         ft.setCustomAnimations(R.anim.slide_up, R.anim.slide_down, R.anim.slide_up, R.anim.slide_down);
                         ft.addToBackStack(null);
-                        ft.replace(R.id.main_layout, fragment).commit();
+                        ft.replace(R.id.main_layout2, fragment).commit();
                         fragment.setType(ok);
                         if (ok) {
                             acceptSound.start();
@@ -306,6 +306,15 @@ public class ScannerActivity extends AppCompatActivity {
         result += "\n درخواستی: ";
         result += meal.getTotal();
         return result;
+    }
+
+    @Override
+    public Response getResponse() {
+        return resp;
+    }
+
+    @Override
+    public void onFragmentFinished() {
     }
 
 
